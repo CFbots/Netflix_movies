@@ -1,0 +1,129 @@
+body {
+    width: 100vw;
+    margin: 0px 0px;
+    font-family: sans-serif;
+    background-color: black;
+    position: absolute;
+  }
+  .divider {
+    border: rgb(61, 59, 59) solid 3px;
+  }
+  .container {
+    width: 100%;
+  }
+  
+  .row {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    flex-direction: column;
+    padding: 50px 0;
+    position: relative;
+    left: -1.5rem;
+    /* border: orange solid 2px; */
+  }
+  
+  .text_col {
+    flex-basis: 50%;
+    color: white;
+    width: 90%;
+    margin-bottom: 0.5rem;
+    margin-left: 0.5rem;
+    /* border: green solid 2px; */
+  }
+  
+  .img-col {
+    flex-basis: 50%;
+    color: white;
+    margin-bottom: 20px;
+    width: 100%;
+    /* border: red solid 2px; */
+  }
+  
+  .title {
+    width: auto;
+    margin-left: 30%;
+    margin-bottom: 30px;
+    padding: 0;
+    font-size: 2rem;
+    font-weight: 600;
+    /* border: purple solid 2px; */
+  }
+  
+  .description {
+    width: 80%;
+    margin-left: 15%;
+    font-size: 1.2rem;
+  }
+  
+  .img-col img {
+    position: relative;
+    display: block;
+    width: 50%;
+    margin: auto;
+  }
+  
+  .videobox {
+    position: absolute;
+  }
+  
+  .videobox video {
+    position: absolute;
+    left: 73px;
+    top: -400px;
+    z-index: -1;
+  }
+  
+  .videobox_2 {
+    position: absolute;
+  }
+  
+  .videobox_2 video {
+    height: 14rem;
+    width: auto;
+    position: absolute;
+    left: 120px;
+    top: -440px;
+    z-index: -1;
+  }
+  
+  @media screen and (max-width: 644px) {
+    .container {
+      min-width: 100%;
+    }
+    .row {
+      min-width: 100%;
+    }
+    .text_col {
+      min-width: 70%;
+    }
+  }
+  
+  @media screen and (min-width: 960px) {
+    body {
+      position: relative;
+      margin: 0;
+    }
+    .row {
+      justify-content: center;
+      flex-wrap: nowrap;
+      flex-direction: row;
+    }
+    .text_col {
+      flex-basis: 50%;
+      margin-left: 3rem;
+      width: 100px;
+    }
+    .title {
+      margin-left: 0;
+    }
+    .description {
+      margin-left: 0;
+    }
+    .img-col {
+      flex-basis: 50%;
+      margin-left: 2px;
+    }
+  }
+  
