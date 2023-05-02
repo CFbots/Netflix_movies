@@ -1,0 +1,58 @@
+* {
+    box-sizing: border-box;
+  }
+  main {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    font-family: sans-serif;
+  }
+  .title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: black;
+  }
+  .description {
+    font-size: medium;
+    margin: 0.2rem 0;
+  }
+  h1 {
+    text-transform: capitalize;
+    color: black;
+    font-size: 1.5rem;
+    width: 100%;
+  }
+  .container {
+    width: 400px;
+    margin: 100px;
+    color: grey;
+  }
+  form {
+    width: 100%；;
+  }
+  input {
+    width: 100%;
+    padding: 1rem 1rem;
+    display: block;
+    border-radius: 3px;
+    border: black 1px solid;
+    margin: 0.5rem auto;
+  }
+  p {
+    padding: 0.2rem;
+    font-size: 0.8rem;
+  }
+  button {
+    width: 100%;
+    border-radius: 3px;
+    background-color: rgb(205, 33, 7);
+    border: none;
+    height: 50px;
+    margin-top: 2rem;
+    font-size: 1.5rem;
+    color: white;
+    line-height: 100%;
+    text-transform: capitalize;
+  }
+  

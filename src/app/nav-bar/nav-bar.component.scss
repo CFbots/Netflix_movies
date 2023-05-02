@@ -1,8 +1,11 @@
+*{
+    background-color: black;
+}
 div {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: auto 2rem;
+    margin: auto 0;
 }
 
 img {
