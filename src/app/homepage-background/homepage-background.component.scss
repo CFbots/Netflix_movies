@@ -12,21 +12,22 @@ main {
     justify-content: center;
 }
 
-h1 {
+.header {
     font-size: 3rem;
+    font-weight: bold;
     letter-spacing: 2px;
     line-height: 50px;
     width: 110%;
 }
 
-h4 {
-    font-size: 1.5rem;
+.title {
+    font-size: 2rem;
     margin: 1rem auto;
     letter-spacing: 1.5px;
 }
 
-h5 {
-    font-size: 1.2rem;
+.subtitle {
+    font-size: 1.5rem;
     margin-top: 1.5rem;
 }
 
@@ -57,6 +58,7 @@ input {
 }
 
 button {
+    cursor: pointer;
     width: 210px;
     border-radius: 3px;
     background-color: red;

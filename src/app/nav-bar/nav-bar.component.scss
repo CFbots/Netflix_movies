@@ -1,14 +1,13 @@
-*{
-    background-color: black;
-}
-div {
+nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin: auto 0;
+    background-color: black;
 }
 
 img {
+    cursor: pointer;
     width: 200px;
     display: block;
     margin-left: 1rem;
@@ -21,6 +20,7 @@ p {
 }
 
 button {
+    cursor: pointer;
     width: 100px;
     height: 40px;
     background-color: red;

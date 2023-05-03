@@ -8,6 +8,7 @@ import { HomepageBackgroundComponent } from './homepage-background/homepage-back
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { RegisterFirstComponent } from './register-first/register-first.component';
+import { RegisterChoosePlanComponent } from './register-choose-plan/register-choose-plan.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { RegisterFirstComponent } from './register-first/register-first.componen
     HomepageBackgroundComponent,
     NavBarComponent,
     SignInComponent,
-    RegisterFirstComponent
+    RegisterFirstComponent,
+    RegisterChoosePlanComponent
   ],
   imports: [
     BrowserModule,

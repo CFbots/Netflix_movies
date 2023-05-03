@@ -1,6 +1,7 @@
 body {
     width: 100vw;
-    margin: 0px 0px;
+    height: 100%;
+    margin: 0;
     font-family: sans-serif;
     background-color: black;
     position: absolute;
@@ -10,6 +11,7 @@ body {
   }
   .container {
     width: 100%;
+    background-color: black;
   }
   
   .row {
