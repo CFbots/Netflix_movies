@@ -9,6 +9,7 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { RegisterFirstComponent } from './register-first/register-first.component';
 import { RegisterChoosePlanComponent } from './register-choose-plan/register-choose-plan.component';
+import { RegisterSecondComponent } from './register-second/register-second.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { RegisterChoosePlanComponent } from './register-choose-plan/register-cho
     NavBarComponent,
     SignInComponent,
     RegisterFirstComponent,
-    RegisterChoosePlanComponent
+    RegisterChoosePlanComponent,
+    RegisterSecondComponent
   ],
   imports: [
     BrowserModule,

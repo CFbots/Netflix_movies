@@ -1,0 +1,61 @@
+*{
+    font-family: sans-serif;
+}
+main {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+}
+
+h1 {
+    color: black;
+    font-size: 2rem;
+    font-weight: bold;
+    width: 100%;
+}
+
+.container {
+    width: 400px;
+    margin: 100px;
+    color: grey;
+}
+
+form {
+    width: 100%;
+    // padding-top: 50px;
+}
+
+.username {
+    margin: 2rem auto;
+}
+
+label{
+    margin: 1rem auto;
+}
+
+input {
+    width: 100%;
+    padding: 1rem 1rem;
+    display: block;
+    border-radius: 3px;
+    border: black 1px solid;
+}
+
+p {
+    font-size: large;
+}
+
+button {
+    cursor: pointer;
+    width: 100%;
+    border-radius: 3px;
+    background-color: rgb(205, 33, 7);
+    border: none;
+    height: 50px;
+    margin-top: 2rem;
+    font-size: 1rem;
+    color: white;
+    line-height: 100%;
+    text-transform: capitalize;
+}

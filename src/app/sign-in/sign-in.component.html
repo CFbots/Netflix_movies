@@ -6,11 +6,17 @@
             </div>
             <div>
                 <input placeholder="Email or phone number" class="info" />
+                <div *ngIf="!email?.valid && (email?.dirty || email?.touched)">
+                    <p>Please enter a valid email</p>
+                </div>
             </div>
             <div>
                 <input placeholder="Password" class="info" />
+                <div *ngIf="!password?.valid && (password?.dirty || password?.touched)">
+                    <p>Your password must contain between 4 and 20 characters.</p>
+                </div>
             </div>
-            <button>sign in</button>
+            <button [disabled]="!loginForm?.valid">sign in</button>
             <div class="remember-help-container">
                 <div class="remember">
                     <input type="checkbox" name="remember-me" value="remember me" checked id="checkbox" />
