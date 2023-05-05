@@ -1,36 +1,29 @@
 <main>
     <div class="form-container">
-        <form>
-            <div>
-                <h1>Sign in</h1>
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <p class="title">Sign in</p>
+            <input type="text" placeholder="Email" formControlName="email">
+            <div *ngIf="!email?.valid && (email?.dirty || email?.touched)">
+                <p id="error-message">Please enter a valid email</p>
             </div>
-            <div>
-                <input placeholder="Email or phone number" class="info" />
-                <div *ngIf="!email?.valid && (email?.dirty || email?.touched)">
-                    <p>Please enter a valid email</p>
-                </div>
+
+            <input type="password" placeholder="Password" formControlName="password">
+            <div *ngIf="!password?.valid && (password?.dirty || password?.touched)">
+                <p id="error-message">Your password must contain between 4 and 20 characters.</p>
             </div>
-            <div>
-                <input placeholder="Password" class="info" />
-                <div *ngIf="!password?.valid && (password?.dirty || password?.touched)">
-                    <p>Your password must contain between 4 and 20 characters.</p>
-                </div>
-            </div>
-            <button [disabled]="!loginForm?.valid">sign in</button>
+            <button [disabled]="!loginForm.valid">sign in</button>
             <div class="remember-help-container">
                 <div class="remember">
-                    <input type="checkbox" name="remember-me" value="remember me" checked id="checkbox" />
-                    <span>Remember Me</span>
+                    <input type="checkbox" name="remember-me" 
+                    value="remember me" 
+                    checked id="checkbox">
+                    <p>Remember Me</p>
                 </div>
-                <div>
-                    <a id="help">Need help?</a>
-                </div>
+                <a id="help">Need help?</a>
             </div>
 
             <p class="signup">New to Notflix? <a id="signup" routerLink="/register-first">Sign up now</a></p>
-            <p>
-                This page is protected by Google reCAPTCHA to ensure you're not a
-                bot. <a id="learnmore">Learn more.</a>
+            <p>This page is protected by Google reCAPTCHA to ensure you're not a bot. <a id="learnmore">Learn more.</a>
             </p>
         </form>
     </div>

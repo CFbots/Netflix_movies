@@ -1,19 +1,22 @@
 <main>
     <div class="container">
-        <p>STEP 2 OF 3</p>
-        <h1>Create a Username and Add your Tmdb Api_Key</h1>
-        <p>Just a few more steps and you're done!</p>
-        <p>We hate paperwork, too.</p>
-        <form>
-            <div class="username">
-                <p>Username</p>
-                <input type="string" placeholder="Add a username" formControlName="username">
+        <p class="step">STEP 2 OF 3</p>
+        <p class="title">Create a Username and Add your Tmdb Api_Key</p>
+        <p class="description">Just a few more steps and you're done!</p>
+        <p class="description">We hate paperwork, too.</p>
+        <form [formGroup]="registerForm_2" (ngSubmit)="onSubmit()" novalidate>
+            <label for="username">Username</label>
+            <input id="username" type="string" placeholder="Add a username" formControlName="username">
+            <div *ngIf="!username?.valid && (username?.dirty || username?.touched)">
+                <p class="error-message">Username is required!</p>
             </div>
-            <div class="api-key">
-                <p>Tmdb Api_Key</p>
-            <input type="string" placeholder="Add a Tmdb Api_Key" formControlName="api_key">
+          
+            <label for="api-key">Tmdb Api_Key</label>
+            <input id="api-key" type="string" placeholder="Add a Tmdb Api_Key" formControlName="api_key">
+            <div *ngIf="!api_key?.valid && (api_key?.dirty || api_key?.touched)">
+                <p class="error-message">Tmdb Api_Key is required!</p>
             </div>
-            <button routerLink="/register-choose-plan">Next</button>
+            <button routerLink="/register-choose-plan" [disabled]="!registerForm_2.valid">Next</button>
         </form>
     </div>
 </main>

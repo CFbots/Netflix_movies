@@ -5,12 +5,31 @@
 
 .container {
     width: 800px;
-    margin: 1rem auto;
+    margin: 2rem auto;
+}
+
+.step {
+    color: grey;
+    ;
+    font-size: 1.5rem;
+    margin-bottom: 3rem;
+}
+
+.title {
+    font-size: 3rem;
+    font-weight: bold;
+    color: black;
+    margin-bottom: 1rem;
+}
+
+ul {
+    margin: 3rem auto;
 }
 
 li {
     list-style-type: none;
-    margin-top: 0.5rem;
+    margin-top: 1rem;
+    font-size: 1.5rem;
 }
 
 .planGrid-selector {
@@ -18,50 +37,12 @@ li {
     flex-direction: row;
     justify-content: flex-end;
     align-items: center;
+    font-size: 1.5rem;
 }
-
-//   .content-container {
-//     width: 55%;
-//     display: flex;
-//     justify-content: space-between;
-//     align-items: center;
-//     position: sticky;
-//   }
-//   .first-column,
-//   .second-column,
-//   .third-column {
-//     width: 100px;
-//     margin: 0.2rem 0.5rem;
-//     padding: 1rem;
-//     color: rgb(125, 121, 121);
-//     text-align: center;
-//     font-weight: bold;
-//   }
-table {
-    width: 100%;
-    font-size: 1rem;
-    color: rgb(94, 89, 89);
-}
-
-table td {
-    border-top: rgb(217, 216, 216) thin solid;
-}
-
-th, td {
-    padding: 15px;
-  }
-td{
-    padding-left: 4.5rem;
-}
-.plan-rate{
-    font-weight: bold;
-}
-
 
 .box {
-    width: 100px;
-    height: 100px;
-    background-color: rgb(205, 33, 7);
+    width: 130px;
+    height: 130px;
     color: white;
     display: flex;
     justify-content: center;
@@ -69,6 +50,29 @@ td{
     margin: 1rem;
     padding: 1rem;
 }
+
+table {
+    font-size: 1.5rem;
+}
+
+table td {
+    border-top: rgb(217, 216, 216) thin solid;
+}
+
+th,
+td {
+    padding: 15px;
+}
+
+td {
+    padding-left: 4.5rem;
+}
+
+.plan-rate {
+    font-weight: bold;
+}
+
+
 
 p {
     line-height: 100%;
@@ -85,18 +89,19 @@ h1 {
 
 button {
     cursor: pointer;
-    width: 50%;
+    width: 100%;
     border-radius: 3px;
     background-color: rgb(205, 33, 7);
     border: none;
-    height: 50px;
-    margin: 5rem, auto;
-    font-size: 1rem;
+    height: 4rem;
+    margin-top: 2rem;
+    font-size: 1.5rem;
     color: white;
     line-height: 100%;
+    text-transform: capitalize;
 }
 
-.button-span{
+.button-span {
     display: flex;
     justify-content: center;
     margin: 5rem auto;

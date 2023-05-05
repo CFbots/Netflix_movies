@@ -10,6 +10,7 @@ import { SignInComponent } from './sign-in/sign-in.component';
 import { RegisterFirstComponent } from './register-first/register-first.component';
 import { RegisterChoosePlanComponent } from './register-choose-plan/register-choose-plan.component';
 import { RegisterSecondComponent } from './register-second/register-second.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { RegisterSecondComponent } from './register-second/register-second.compo
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule, 
+    ReactiveFormsModule 
   ],
   providers: [],
   bootstrap: [AppComponent]

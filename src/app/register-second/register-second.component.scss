@@ -1,61 +1,65 @@
-*{
-    font-family: sans-serif;
-}
-main {
+* {
+    box-sizing: border-box;
+  }
+  main {
     width: 100vw;
     height: 100vh;
     display: flex;
     justify-content: center;
-}
+    font-family: sans-serif;
+  }
 
-h1 {
-    color: black;
-    font-size: 2rem;
-    font-weight: bold;
-    width: 100%;
-}
-
-.container {
-    width: 400px;
-    margin: 100px;
+  .container {
+    width: 35rem;
+    margin: 2rem;
     color: grey;
-}
+  }
 
-form {
-    width: 100%;
-    // padding-top: 50px;
-}
+  .step{
+    font-size: 1.5rem;
+  }
+  .title {
+    font-size: 3rem;
+    font-weight: bold;
+    color: black;
+    margin-bottom: 1rem;
+  }
 
-.username {
-    margin: 2rem auto;
-}
+  .description {
+    font-size: 1.5rem;
+    margin: 0.2rem .2rem;
+  }
+  form{
+    margin-top: 2rem;
+  }
 
-label{
-    margin: 1rem auto;
-}
-
-input {
+  label{
+    font-size: 1.5rem;
+  }
+  input {
     width: 100%;
     padding: 1rem 1rem;
     display: block;
     border-radius: 3px;
     border: black 1px solid;
-}
+    margin: 1rem auto;
+    font-size: 1.5rem;
+  }
 
-p {
-    font-size: large;
-}
-
-button {
+  .error-message{
+    font-size: 1.2rem;
+  }
+  button {
     cursor: pointer;
     width: 100%;
     border-radius: 3px;
     background-color: rgb(205, 33, 7);
     border: none;
-    height: 50px;
+    height: 4rem;
     margin-top: 2rem;
-    font-size: 1rem;
+    font-size: 1.5rem;
     color: white;
     line-height: 100%;
     text-transform: capitalize;
-}
+  }
+  

@@ -2,7 +2,7 @@
     <div class="container">
         <p class="step">STEP 2 OF 3</p>
         <div>
-            <h1>Choose the plan that’s right for you</h1>
+            <p class="title">Choose the plan that’s right for you</p>
             <div>
                 <ul>
                     <li>
@@ -23,35 +23,46 @@
         <div class="planGrid">
             <div class="planGrid-selector">
                 <p></p>
-                <div class="first-column box">
-                    <p>Standard with ads</p>
-                </div>
-                <div class="second-column box">
-                    <p>Standard</p>
-                </div>
-                <div class="third-column box">
-                    <p>Premium</p>
+                <div class="box" 
+                *ngFor="let plan of plans; let i = index"
+                (click)="selectedIndex = i"
+                [ngStyle]="{'background-color': selectedIndex === i ? 'rgb(205, 33, 7)':'rgb(237, 80, 55)'} ">
+                    <p>{{plan}}</p>
                 </div>
             </div>
             <table>
                 <tbody>
                     <tr class="first_row">
                         <td>Monthly price</td>
-                        <td class="plan-rate">$6.99</td>
-                        <td class="plan-rate">$15.49</td>
-                        <td class="plan-rate">$19.99</td>
+                        <td 
+                        *ngFor="let price of plans_prices; let i = index"
+                        (click)="selectedIndex = i"
+                        [ngStyle]="{'color': selectedIndex === i ? slectedTextColor:unslectedTextColor} "
+                        class="plan-rate">
+                        {{price}}
+                        </td>
                     </tr>
                     <tr>
                         <td>Video quality</td>
-                        <td class="plan-rate">Great</td>
-                        <td class="plan-rate">Great</td>
-                        <td class="plan-rate">Best</td>
+                        <td 
+                        class="plan-rate" 
+                        *ngFor="let quality of plans_quality; let i = index"
+                        (click)="selectedIndex = i"
+                        [ngStyle]="{'color': selectedIndex === i ? slectedTextColor:unslectedTextColor} "
+                        >
+                        {{quality}}
+                        </td>
                     </tr>
                     <tr>
                         <td>Resolution</td>
-                        <td class="plan-rate">1080p</td>
-                        <td class="plan-rate">1080p</td>
-                        <td class="plan-rate">4K+HDR</td>
+                        <td 
+                        class="plan-rate" 
+                        *ngFor="let resolut of plans_resolut; let i = index"
+                        (click)="selectedIndex = i"
+                        [ngStyle]="{'color': selectedIndex === i ? slectedTextColor:unslectedTextColor} "
+                        >
+                        {{resolut}}
+                        </td>
                     </tr>
                     <tr>
                         <td> Watch on your TV, computer, mobile phone and tablet</td>
