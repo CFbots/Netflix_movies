@@ -5,15 +5,23 @@
       <p class="description">Just a few more steps and you're done!</p>
       <p class="description">We hate paperwork, too.</p>
       <form [formGroup]="registerForm_1" (ngSubmit)="onSubmit()" novalidate>
-          <input type="email" placeholder="Email" formControlName="email">
+          <label for="email">Email</label>
+          <input type="email" id="email" placeholder="Email" formControlName="email">
           <div *ngIf="!email?.valid && (email?.dirty || email?.touched)">
               <p class="error-message">Please enter an valid email!</p>
           </div>
-          <input type="password" placeholder="Add a password" formControlName="password">
+          <label for="password">Password</label>
+          <input type="password" id="password" placeholder="Add a password" formControlName="password">
           <div *ngIf="!password?.valid && (password?.dirty || password?.touched)">
               <p class="error-message">Your password must contain between 4 and 20 characters!</p>
           </div>
-          <button [disabled]="!registerForm_1.valid" routerLink="/register-second">Next</button>
+          <label for="comfirm">Comfirm password</label>
+          <input type="password" id="comfirm" placeholder="Confirm the password" formControlName="confirm">
+          <div *ngIf="registerForm_1.hasError('noMatch')">
+            <p class="error-message"> The password does not match!</p>
+        </div>
+
+          <button [disabled]="!registerForm_1.valid" [ngStyle]="{'background-color': !registerForm_1.valid ? 'rgb(165, 105, 96)':'rgb(205, 33, 7)'}" routerLink="/register-second">Next</button>
       </form>
   </div>
 </main>

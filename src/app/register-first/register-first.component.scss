@@ -32,13 +32,16 @@
   form{
     margin-top: 2rem;
   }
+  label{
+    font-size: 1.5rem;
+  }
   input {
     width: 100%;
     padding: 1rem 1rem;
     display: block;
     border-radius: 3px;
     border: black 1px solid;
-    margin: 1rem auto;
+    margin: .5rem auto;
     font-size: 1.5rem;
   }
 
