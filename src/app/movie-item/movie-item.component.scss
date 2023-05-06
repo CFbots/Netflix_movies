@@ -1,0 +1,63 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+
+.movie-item {
+    width: 260px;
+    margin: 10px;
+    background-color: black;
+    color: black;
+    // background: url("https://image.tmdb.org/t/p/w440_and_h660_face/kuf6dutpsT0vSVehic3EZIqkOBt.jpg");
+}
+
+.img-container {
+    display: flex;
+    justify-content: flex-end;
+}
+
+img {
+    width: 50%;
+    margin: 10px;
+}
+
+.info-container {
+    margin: 10px;
+}
+
+.title {
+    margin-top: 10px;
+    font-size: medium;
+    font-weight: bold;
+    color: white;
+    margin: .5rem auto;
+}
+
+.general-info-container {
+    display: flex;
+    justify-content: space-evenly;
+    margin: .5rem auto;
+}
+
+.general-info {
+    color: white;
+    background-color: rgba(156, 15, 71, 0.872);
+    border-radius: 10px;
+    width: 30%;
+    text-align: center;
+}
+.overview{
+    color: white;
+    font-size: small;
+}
+button {
+    background-color: transparent;
+    color: white;
+    width: 50%;
+    height: 40px;
+    border: 1px solid white;
+    border-radius: 2px;
+    margin: 1rem auto;
+}

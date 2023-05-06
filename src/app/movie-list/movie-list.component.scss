@@ -1,0 +1,12 @@
+main{
+    background-color: rgb(21, 21, 21);
+}
+.movie_list_container{
+    padding: 3rem;
+}
+
+.movie_list{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+}
