@@ -1,18 +1,18 @@
 <html lang="en, zh-CN">
-    <div class="movie-item">
-        <div class="img-container">
-            <img [src]="movie.poster_path">
-        </div>
-        <div class="info-container">
-            <p class="title">{{ movie.original_title }}</p>
-            <div class="general-info-container">
-                <p class="general-info">{{ movie.release_date | date: 'yyyy'}}</p>
-                <p class="general-info">{{ movie.original_language | uppercase }}</p>
-                <p class="general-info">{{ movie.vote_average | number: '1.1-1'}}</p>
-            </div>
-            <div><i class="overview">{{ movie.overview | slice:0:95 }}...</i></div>
-            
-            <button>More Details</button>
-        </div>
+<div class="movie-item" [ngStyle]="{'background-image': 'url(' + movie.poster_path + ')'}">
+    <div class="img-container">
+        <img [src]="movie.poster_path">
     </div>
+    <div class="info-container">
+        <p class="title">{{ movie.original_title || movie.original_name}}</p>
+        <div class="general-info-container">
+            <p class="general-info">{{ movie.release_date || movie.first_air_date | date: 'yyyy'}}</p>
+            <p class="general-info">{{ movie.original_language | uppercase }}</p>
+            <p class="general-info">{{ movie.vote_average | number: '1.1-1'}}</p>
+        </div>
+        <div><i class="overview">{{ movie.overview | slice:0:100 }}...</i></div>
+
+        <button>More Details</button>
+    </div>
+</div>
 </html>

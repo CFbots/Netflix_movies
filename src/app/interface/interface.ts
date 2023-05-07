@@ -31,14 +31,16 @@ export interface SpokenLanguage {
 export interface Movie {
     adult: boolean;
     backdrop_path: string;
-    belongs_to_collection: BelongsToCollection;
+    first_air_date?:string | null;
+    belongs_to_collection?: BelongsToCollection;
     budget: number;
-    genres: Genre[];
-    homepage: string;
+    genres?: Genre[];
+    homepage?: string;
     id: number;
     imdb_id: string;
     original_language: string;
-    original_title: string;
+    original_title?: string | null;
+    original_name?:string | null;
     overview: string;
     popularity: number;
     poster_path: string;
@@ -47,11 +49,11 @@ export interface Movie {
     release_date: string;
     revenue: number;
     runtime: number;
-    spoken_languages: SpokenLanguage[];
+    spoken_languages?: SpokenLanguage[];
     status: string;
     tagline: string;
     title: string;
-    video: boolean;
+    video?: boolean | null;
     vote_average: number;
     vote_count: number;
 }

@@ -8,9 +8,28 @@
 .movie-item {
     width: 260px;
     margin: 10px;
-    background-color: black;
-    color: black;
-    // background: url("https://image.tmdb.org/t/p/w440_and_h660_face/kuf6dutpsT0vSVehic3EZIqkOBt.jpg");
+    position: relative;
+}
+
+.movie-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: inherit;
+    filter: brightness(20%);
+}
+
+.movie-item .img-container {
+    position: relative;
+    z-index: 1;
+}
+
+.movie-item .info-container {
+    position: relative;
+    z-index: 1;
 }
 
 .img-container {
@@ -48,11 +67,14 @@ img {
     width: 30%;
     text-align: center;
 }
-.overview{
+
+.overview {
     color: white;
     font-size: small;
 }
+
 button {
+    cursor: pointer;
     background-color: transparent;
     color: white;
     width: 50%;
