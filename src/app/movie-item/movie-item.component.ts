@@ -13,7 +13,7 @@ export class MovieItemComponent implements OnInit{
 
   constructor(@Inject(ImgUrl) private imgUrl: string) {}
   ngOnInit(): void {
-    console.log(this.movie);
+    // console.log(this.movie);
     this.movie.poster_path = this.imgUrl + this.movie.poster_path;
   } 
 }

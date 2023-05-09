@@ -13,6 +13,7 @@ import { RegisterSecondComponent } from './register-second/register-second.compo
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MovieListComponent } from './movie-list/movie-list.component';
 import { MovieItemComponent } from './movie-item/movie-item.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 export const MovieUrl = new InjectionToken<string>('');
 export const ImgUrl = new InjectionToken<string>('');
@@ -34,7 +35,8 @@ export const ImgUrl = new InjectionToken<string>('');
     BrowserModule,
     AppRoutingModule, 
     ReactiveFormsModule, 
-    HttpClientModule
+    HttpClientModule,
+    MatFormFieldModule
   ],
   providers: [{
     provide: MovieUrl,

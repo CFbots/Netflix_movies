@@ -8,7 +8,7 @@ import { Movie } from '../interface/interface';
   providedIn: 'root'
 })
 export class MovieService implements OnInit{
-  movielist: Movie[] = [];
+  // movielist: Movie[] = [];
   movielist$ = new Subject<Movie[]>();
 
   constructor(private http: HttpClient,
@@ -20,12 +20,11 @@ export class MovieService implements OnInit{
   }
 
   getMovie(){
-    console.log("hi!");
     return this.http.get(this.movieUrl).pipe(
       tap((movies: any)=>{
-        // console.log(movies.results);
-        this.movielist = movies.results;
-        this.movielist$.next(this.movielist);
+        // this.movielist = movies.results;
+        // console.log("movie service:", this.movielist);
+        this.movielist$.next(movies.results);
       })
     )
   }
