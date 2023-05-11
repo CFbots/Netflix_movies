@@ -14,6 +14,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MovieListComponent } from './movie-list/movie-list.component';
 import { MovieItemComponent } from './movie-item/movie-item.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { ErrorPageComponent } from './error-page/error-page.component';
 
 export const MovieUrl = new InjectionToken<string>('');
 export const ImgUrl = new InjectionToken<string>('');
@@ -29,7 +30,8 @@ export const ImgUrl = new InjectionToken<string>('');
     RegisterChoosePlanComponent,
     RegisterSecondComponent,
     MovieListComponent,
-    MovieItemComponent
+    MovieItemComponent,
+    ErrorPageComponent
   ],
   imports: [
     BrowserModule,

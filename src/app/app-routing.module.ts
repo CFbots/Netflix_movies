@@ -6,6 +6,7 @@ import { RegisterFirstComponent } from './register-first/register-first.componen
 import { RegisterSecondComponent } from './register-second/register-second.component';
 import { RegisterChoosePlanComponent } from './register-choose-plan/register-choose-plan.component';
 import { MovieListComponent } from './movie-list/movie-list.component';
+import { ErrorPageComponent } from './error-page/error-page.component';
 
 const routes: Routes = [
   { path: '', component: HomepageComponent},
@@ -14,6 +15,7 @@ const routes: Routes = [
   { path: 'register-second', component: RegisterSecondComponent }, 
   { path: 'register-choose-plan', component: RegisterChoosePlanComponent }, 
   { path: 'movie-list', component: MovieListComponent},
+  { path: '**', component: ErrorPageComponent},
 ];
 
 @NgModule({
