@@ -25,7 +25,6 @@ export class SignInComponent implements OnInit{
     return this.loginForm.get('password');
   }
   onSubmit() {
-    // console.log("hello!");
     console.log(this.loginForm.value);
   }
 }
