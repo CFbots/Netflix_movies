@@ -7,6 +7,7 @@ const routes: Routes = [
   { path: 'sign-in', loadChildren:()=>import('./sign-in/sign-in.module').then((m)=>m.SignInModule)}, 
   { path: 'register', loadChildren: () => import('./register/register.module').then((m) => m.RegisterModule) }, 
   { path: 'movie-list', loadChildren:() => import('./movie-list/movie-list.module').then((m)=>(m.MovieListModule))},
+  { path: 'movie-list/:id', loadChildren: () => import('./movie-detail/movie-detial.module').then((m) => m.MovieDetailModule)},
   { path: '**', loadChildren:()=>import('./error-page/error-page.module').then((m)=>m.ErrorPageModule)},
 ];
 

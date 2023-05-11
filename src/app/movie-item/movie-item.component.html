@@ -12,7 +12,7 @@
         </div>
         <div><i class="overview">{{ movie.overview | slice:0:100 }}...</i></div>
 
-        <button>More Details</button>
+        <button (click)="goToDetailPage()">More Details</button>
     </div>
 </div>
 </html>

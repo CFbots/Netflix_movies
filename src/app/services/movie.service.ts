@@ -1,8 +1,9 @@
 import { Inject, Injectable, OnInit } from '@angular/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { MovieUrl } from '../app.module';
+import { MovieImgBaseUrl, MovieUrl, TmdbBaseUrl } from '../app.module';
 import { BehaviorSubject, Observable, Subject, map, tap } from 'rxjs';
 import { Movie } from '../interface/interface';
+import { DiscoverMovie } from '../interface/discoverMovie.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -10,9 +11,23 @@ import { Movie } from '../interface/interface';
 export class MovieService implements OnInit{
   // movielist: Movie[] = [];
   movielist$ = new Subject<Movie[]>();
+  private readonly moviePath = 'movie';
+
+  private baseDiscoverMovie: DiscoverMovie = {
+    api_key: '',
+    page: 1,
+    language: 'en-US',
+    sort_by: 'popularity.desc',
+    include_adult: false,
+    include_video: false,
+    with_watch_monetization_types: 'flatrate',
+  };
+
 
   constructor(private http: HttpClient,
-    @Inject(MovieUrl) private movieUrl: string
+    @Inject(MovieUrl) private movieUrl: string,
+    @Inject(TmdbBaseUrl) private tmdbBaseUrl:string,
+    @Inject(MovieImgBaseUrl) private movieImgBaseUrl:string,
     ) {}
 
   ngOnInit(): void {
@@ -28,4 +43,21 @@ export class MovieService implements OnInit{
       })
     )
   }
+
+  getMovieInfo(id: number, item: string =''): Observable<any> {
+    let url = ''
+    if (this.baseDiscoverMovie.api_key) {
+      if (!item) {
+        url = [this.tmdbBaseUrl, this.moviePath, id].join('/') + '?api_key=' + this.baseDiscoverMovie.api_key;
+      } else {
+        url = [this.tmdbBaseUrl, this.moviePath, id, item].join('/') + '?api_key=' + this.baseDiscoverMovie.api_key;
+      }
+    } 
+    return this.http.get(url);
+  }
+
+  getMovieImagePath(path: string, quality: string): string {
+    return [this.movieImgBaseUrl, quality, path].join('/');
+  }
+
 }
