@@ -4,6 +4,9 @@
     align-items: $items;
     flex-direction: $direction;
   }
+*{
+  background-color: black;
+}  
 .video_container {
     position: relative;
     margin-top: 1em;
@@ -11,8 +14,9 @@
     width: 70rem;
     background-color: black;
     border-radius: 20px;
+    margin: 0 auto;
     @include flex();
-  
+
     button {
       color: white;
     }
@@ -21,7 +25,10 @@
       height: 100%;
       flex-wrap: nowrap;
       @include flex();
-  
+
+      .mat-icon{
+        background-color: #8d143c;
+      }
       .no_video {
         position: absolute;
         top: 0;
@@ -56,9 +63,14 @@
         right: 0;
         transform: translate(120%, -50%);
       }
-      .video_switcher_left:hover,
-      .video_switcher_right:hover {
-        background-color: #bc0643;
-      }
     }
+  }
+  .mat-raised-button{
+    background-color: #8d143c;
+    color: white;
+    margin: 0 auto;
+    border-radius: .2rem;
+    border: none;
+    height: 3rem;
+    width: 6rem;
   }

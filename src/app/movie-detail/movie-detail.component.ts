@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild  } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { MovieService } from '../services/movie.service';
 import { MovieDetail } from '../interface/movie-detail.interface';
@@ -17,9 +17,7 @@ import { TrailerYoutubeComponent } from './trailer-youtube/trailer-youtube.compo
 export class MovieDetailComponent implements OnInit{
   @ViewChild(YouTubePlayer, { static: true }) youTubePlayer!: YouTubePlayer;
 
-  hasPoster_img = true;
   hasBackdrop_img = true;
-  poster_img_high = '';
   background_imge = '';
   type!: string | undefined;
   movie!: MovieDetail;
@@ -27,11 +25,12 @@ export class MovieDetailComponent implements OnInit{
   actors: Cast[] = [];
   posters: Poster[] = [];
   id!: number;
+  currentDialogRef!: MatDialogRef<TrailerYoutubeComponent>;
 
   constructor(
     private movieService: MovieService,
     private readonly activatedRoute: ActivatedRoute,
-    public dialog: MatDialog
+    private dialog: MatDialog
     ) {}
 
   ngOnInit(): void {
@@ -44,39 +43,39 @@ export class MovieDetailComponent implements OnInit{
       this.type = this.movie.genres?.map(({ name }) => name).join(', ');
       if(this.movie.backdrop_path){
         this.background_imge = this.movieService.getMovieImagePath(this.movie.backdrop_path,'original');
+        this.hasBackdrop_img = true;
       } else {
         this.background_imge = "";
+        this.hasBackdrop_img = false;
       }
-      console.log("getting the movie!", this.movie);
-      console.log("getting the movie title!", this.movie.title);
+      // console.log("getting the movie!", this.movie);
+      // console.log("getting the movie title!", this.movie.title);
     });
 
     this.getMovieSource();
   }
 
   openDialog(): void {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.hasBackdrop = true;
+    dialogConfig.closeOnNavigation = true;
+
     const dialogRef = this.dialog.open(TrailerYoutubeComponent, {
       data: {
         movieVideos: this.movieVideos,
-        hasposter_img: this.hasPoster_img,
         hasbackdrop_img: this.hasBackdrop_img,
-        poster_img_high: this.poster_img_high,
         background_imge: this.background_imge,
       },
-      backdropClass: 'backdropBackground',
-      panelClass: 'my-panel',
+      maxWidth: '100vw',
     });
-
-    dialogRef.afterClosed().subscribe((result) => {
-      console.log('The dialog was closed', result);
-    });
+    this.currentDialogRef = dialogRef;
   }
   
   private getMovieSource() {
     this.movieService.getMovieInfo(this.id, 'videos').subscribe(videos => {
       if (videos && videos.results) {
         this.movieVideos = [...videos.results];
-        console.log("getting the movieVideos!", this.movieVideos);
+        // console.log("getting the movieVideos!", this.movieVideos);
       }
     });
 
@@ -85,7 +84,7 @@ export class MovieDetailComponent implements OnInit{
         const profile_path = actor.profile_path? this.movieService.getMovieImagePath(actor.profile_path, 'w500') : '';
         return {...actor, profile_path};
       })
-      console.log("getting the actor!", this.actors);
+      // console.log("getting the actor!", this.actors);
     });
 
     this.movieService.getMovieInfo(this.id, 'images').subscribe(backdrops => {
@@ -93,34 +92,13 @@ export class MovieDetailComponent implements OnInit{
         const file_path = backdrop.file_path? this.movieService.getMovieImagePath(backdrop.file_path, 'w500') : '';
         return {...backdrop, file_path};
       })
-      console.log("getting the images!", this.posters);
+      // console.log("getting the images!", this.posters);
     });
+  }
 
-    // if (this.movie?.backdrop_path) {
-    //   // console.log("here is the backdrop!", this.movie.backdrop_path);
-    //   this.hasBackdrop_img = true;
-    //   this.backdrop_img_high = this.movieService.getMovieImagePath(
-    //     this.movie.backdrop_path,
-    //     'original'
-    //   );
-    //   console.log("here is the backdrop_img_high", this.backdrop_img_high);
-    // } else {
-    //   this.hasBackdrop_img = false;
-    // }
-    if (this.background_imge){
-      this.hasBackdrop_img = true;
-    } else {
-      this.hasBackdrop_img = false;
-    }
-    
-    if (this.movie?.poster_path) {
-      this.hasPoster_img = true;
-      this.poster_img_high = this.movieService.getMovieImagePath(
-        this.movie.poster_path,
-        'w780'
-      );
-    } else {
-      this.hasPoster_img = false;
+  ngOnDestroy(): void {
+    if (this.currentDialogRef && this.currentDialogRef.componentInstance) {
+      this.currentDialogRef.close();
     }
   }
 }

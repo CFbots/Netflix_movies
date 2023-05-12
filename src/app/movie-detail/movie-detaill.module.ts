@@ -22,7 +22,7 @@ const routes: Routes = [
     MatIconModule,
     MatDialogModule,
     RouterModule.forChild(routes),
-    YouTubePlayerModule //<-- Add this line
+    YouTubePlayerModule 
   ],
   exports: [
     MovieDetailComponent,

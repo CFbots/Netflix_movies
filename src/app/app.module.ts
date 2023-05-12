@@ -11,6 +11,7 @@ export const MovieUrl = new InjectionToken<string>('');
 export const ImgUrl = new InjectionToken<string>('');
 export const TmdbBaseUrl = new InjectionToken<string>('');
 export const MovieImgBaseUrl = new InjectionToken<string>('');
+export const ApiKey = new InjectionToken<string>('');
 
 @NgModule({
   declarations: [
@@ -38,6 +39,10 @@ export const MovieImgBaseUrl = new InjectionToken<string>('');
   {
     provide: MovieImgBaseUrl,
     useValue: 'https://image.tmdb.org/t/p',
+  },
+  {
+    provide: ApiKey,
+    useValue: '903ebd52027fe49503e599459ee42446',
   },
   ],
   bootstrap: [AppComponent]

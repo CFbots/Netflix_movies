@@ -9,10 +9,8 @@ import { Video } from 'src/app/interface/video.interface';
 })
 export class TrailerYoutubeComponent implements OnInit{
   movieVideos: Video[] = [];
-  hasPoster_img = true;
   hasBackdrop_img = true;
-  poster_img_high = '';
-  backdrop_img_high = '';
+  background_imge = '';
 
   constructor(
     private dialogRef: MatDialogRef<TrailerYoutubeComponent>,
@@ -20,14 +18,16 @@ export class TrailerYoutubeComponent implements OnInit{
 
   ngOnInit(): void {
     this.movieVideos = this.data.movieVideos;
-    this.hasPoster_img = this.data.hasPoster_img;
     this.hasBackdrop_img = this.data.hasBackdrop_img;
-    this.poster_img_high = this.data.poster_img_high;
-    this.backdrop_img_high = this.data.backdrop_img_high;
+    this.background_imge = this.data.background_imge;
 
     const tag = document.createElement('script');
     tag.src = 'https://www.youtube.com/iframe_api';
     document.body.appendChild(tag);
+  }
+
+  close():void {
+    this.dialogRef.close();
   }
 
   switchVideo(direction: string) {
