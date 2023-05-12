@@ -3,7 +3,7 @@
         <section class="movie_info">
             <p class="movie_name">{{ movie?.title || movie?.original_title }}</p>
             <p class="movie_info_list">
-                
+                <mat-icon>star</mat-icon>
                 <span style="font-size: 1.6rem" class="fc">
                     {{ movie?.vote_average | number: '1.1-1' }}
                 </span>
@@ -20,10 +20,10 @@
             </p>
 
             <div class="btn_list">
-                <button class="btn fc" disabled>
-                    <span>PLAY NOW</span>
+                <button class="btn fc">
+                    <mat-icon>play_arrow</mat-icon><span>PLAY NOW</span>
                 </button>
-                <button class="btn">
+                <button class="btn" (click)="openDialog()">
                     <strong>TRAILER</strong>
                 </button>
             </div>

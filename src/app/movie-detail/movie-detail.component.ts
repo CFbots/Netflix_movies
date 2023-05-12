@@ -1,10 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild  } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { MovieService } from '../services/movie.service';
 import { MovieDetail } from '../interface/movie-detail.interface';
 import { Video } from '../interface/video.interface';
 import { Cast } from '../interface/cast.interface';
 import { Backdrop, Poster } from '../interface/movie-image.interface';
+import { YouTubePlayer } from '@angular/youtube-player';
+import { TrailerYoutubeComponent } from './trailer-youtube/trailer-youtube.component';
 
 @Component({
   selector: 'app-movie-detail',
@@ -12,9 +15,11 @@ import { Backdrop, Poster } from '../interface/movie-image.interface';
   styleUrls: ['./movie-detail.component.scss']
 })
 export class MovieDetailComponent implements OnInit{
+  @ViewChild(YouTubePlayer, { static: true }) youTubePlayer!: YouTubePlayer;
+
   hasPoster_img = true;
   hasBackdrop_img = true;
-  // poster_img_high = '';
+  poster_img_high = '';
   background_imge = '';
   type!: string | undefined;
   movie!: MovieDetail;
@@ -25,7 +30,8 @@ export class MovieDetailComponent implements OnInit{
 
   constructor(
     private movieService: MovieService,
-    private readonly activatedRoute: ActivatedRoute
+    private readonly activatedRoute: ActivatedRoute,
+    public dialog: MatDialog
     ) {}
 
   ngOnInit(): void {
@@ -46,6 +52,24 @@ export class MovieDetailComponent implements OnInit{
     });
 
     this.getMovieSource();
+  }
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(TrailerYoutubeComponent, {
+      data: {
+        movieVideos: this.movieVideos,
+        hasposter_img: this.hasPoster_img,
+        hasbackdrop_img: this.hasBackdrop_img,
+        poster_img_high: this.poster_img_high,
+        background_imge: this.background_imge,
+      },
+      backdropClass: 'backdropBackground',
+      panelClass: 'my-panel',
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log('The dialog was closed', result);
+    });
   }
   
   private getMovieSource() {
@@ -83,15 +107,20 @@ export class MovieDetailComponent implements OnInit{
     // } else {
     //   this.hasBackdrop_img = false;
     // }
+    if (this.background_imge){
+      this.hasBackdrop_img = true;
+    } else {
+      this.hasBackdrop_img = false;
+    }
     
-    // if (this.movie?.poster_path) {
-    //   this.hasPoster_img = true;
-    //   this.poster_img_high = this.movieService.getMovieImagePath(
-    //     this.movie.poster_path,
-    //     'w780'
-    //   );
-    // } else {
-    //   this.hasPoster_img = false;
-    // }
+    if (this.movie?.poster_path) {
+      this.hasPoster_img = true;
+      this.poster_img_high = this.movieService.getMovieImagePath(
+        this.movie.poster_path,
+        'w780'
+      );
+    } else {
+      this.hasPoster_img = false;
+    }
   }
 }
