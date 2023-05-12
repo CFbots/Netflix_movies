@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { SharedModule } from './shared/shared.module';
-import { MovieDetailComponent } from './movie-detail/movie-detail.component';
 
 export const MovieUrl = new InjectionToken<string>('');
 export const ImgUrl = new InjectionToken<string>('');

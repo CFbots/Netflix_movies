@@ -1,1 +1,53 @@
-<p>movie-detail works!<p>
+<main class="host" [ngStyle]="{'background-image': 'url(' + background_imge + ')', 'background-size': 'cover'}">
+    <div class="container">
+        <section class="movie_info">
+            <p class="movie_name">{{ movie?.title || movie?.original_title }}</p>
+            <p class="movie_info_list">
+                
+                <span style="font-size: 1.6rem" class="fc">
+                    {{ movie?.vote_average | number: '1.1-1' }}
+                </span>
+                <span class="fc">| {{ movie?.popularity?.toFixed(0) }}</span>
+                <span style="margin-left: 2rem" class="fc">
+                    {{ movie?.runtime }} mins · {{ type }} · {{ movie?.release_date | date: 'yyyy' }}
+                </span>
+            </p>
+            <p class="description fc">{{ movie?.overview }}</p>
+            <p class="homepage" *ngIf="movie?.homepage">
+                <a mat-raised-button>
+                    Home Page
+                </a>
+            </p>
+
+            <div class="btn_list">
+                <button class="btn fc" disabled>
+                    <span>PLAY NOW</span>
+                </button>
+                <button class="btn">
+                    <strong>TRAILER</strong>
+                </button>
+            </div>
+        </section>
+        <section class="movie_info">
+            <div class="posters_list">
+                <h1>Poster</h1>
+                <div class="list">
+                    <div class="poster_item" *ngFor="let poster of posters | slice:0:4">
+                        <img [src]="poster.file_path" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="actors_list">
+                <h1>Actors</h1>
+                <div class="list">
+                    <div class="actor_item" *ngFor="let actor of actors | slice:0:10">
+                        <div>
+                            <img
+                                [src]="actor.profile_path? actor.profile_path :  '../../../assets/VGA-no-signal-image.jpeg'" />
+                            <div style="text-align: center">{{ actor.name }}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>

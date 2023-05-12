@@ -12,9 +12,10 @@ export class MovieService implements OnInit{
   // movielist: Movie[] = [];
   movielist$ = new Subject<Movie[]>();
   private readonly moviePath = 'movie';
+  private readonly api_key = '903ebd52027fe49503e599459ee42446';
 
   private baseDiscoverMovie: DiscoverMovie = {
-    api_key: '',
+    api_key: this.api_key,
     page: 1,
     language: 'en-US',
     sort_by: 'popularity.desc',
@@ -46,13 +47,12 @@ export class MovieService implements OnInit{
 
   getMovieInfo(id: number, item: string =''): Observable<any> {
     let url = ''
-    if (this.baseDiscoverMovie.api_key) {
-      if (!item) {
-        url = [this.tmdbBaseUrl, this.moviePath, id].join('/') + '?api_key=' + this.baseDiscoverMovie.api_key;
-      } else {
-        url = [this.tmdbBaseUrl, this.moviePath, id, item].join('/') + '?api_key=' + this.baseDiscoverMovie.api_key;
-      }
-    } 
+    if (!item) {
+      url = [this.tmdbBaseUrl, this.moviePath, id].join('/') + '?api_key=' + this.api_key;
+    } else {
+      url = [this.tmdbBaseUrl, this.moviePath, id, item].join('/') + '?api_key=' + this.api_key;
+    }
+    console.log("gettting the movie Info!", item, url);
     return this.http.get(url);
   }
 
