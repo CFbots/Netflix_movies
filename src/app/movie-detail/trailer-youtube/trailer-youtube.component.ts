@@ -30,6 +30,10 @@ export class TrailerYoutubeComponent implements OnInit{
     document.body.appendChild(tag);
   }
 
+  close():void {
+    this.dialogRef.close();
+  }
+
   switchVideo(direction: string) {
     if (direction === 'left' && this.movieVideos.length) {
       const removedVideo: Video = this.movieVideos.shift() as Video;

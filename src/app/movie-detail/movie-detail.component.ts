@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild  } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { MovieService } from '../services/movie.service';
 import { MovieDetail } from '../interface/movie-detail.interface';
@@ -27,11 +27,12 @@ export class MovieDetailComponent implements OnInit{
   actors: Cast[] = [];
   posters: Poster[] = [];
   id!: number;
+  currentDialogRef!: MatDialogRef<TrailerYoutubeComponent>;
 
   constructor(
     private movieService: MovieService,
     private readonly activatedRoute: ActivatedRoute,
-    public dialog: MatDialog
+    private dialog: MatDialog
     ) {}
 
   ngOnInit(): void {
@@ -47,14 +48,18 @@ export class MovieDetailComponent implements OnInit{
       } else {
         this.background_imge = "";
       }
-      console.log("getting the movie!", this.movie);
-      console.log("getting the movie title!", this.movie.title);
+      // console.log("getting the movie!", this.movie);
+      // console.log("getting the movie title!", this.movie.title);
     });
 
     this.getMovieSource();
   }
 
   openDialog(): void {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.hasBackdrop = true;
+    dialogConfig.closeOnNavigation = true;
+
     const dialogRef = this.dialog.open(TrailerYoutubeComponent, {
       data: {
         movieVideos: this.movieVideos,
@@ -63,20 +68,16 @@ export class MovieDetailComponent implements OnInit{
         poster_img_high: this.poster_img_high,
         background_imge: this.background_imge,
       },
-      backdropClass: 'backdropBackground',
-      panelClass: 'my-panel',
+      maxWidth: '100vw',
     });
-
-    dialogRef.afterClosed().subscribe((result) => {
-      console.log('The dialog was closed', result);
-    });
+    this.currentDialogRef = dialogRef;
   }
   
   private getMovieSource() {
     this.movieService.getMovieInfo(this.id, 'videos').subscribe(videos => {
       if (videos && videos.results) {
         this.movieVideos = [...videos.results];
-        console.log("getting the movieVideos!", this.movieVideos);
+        // console.log("getting the movieVideos!", this.movieVideos);
       }
     });
 
@@ -93,20 +94,9 @@ export class MovieDetailComponent implements OnInit{
         const file_path = backdrop.file_path? this.movieService.getMovieImagePath(backdrop.file_path, 'w500') : '';
         return {...backdrop, file_path};
       })
-      console.log("getting the images!", this.posters);
+      // console.log("getting the images!", this.posters);
     });
 
-    // if (this.movie?.backdrop_path) {
-    //   // console.log("here is the backdrop!", this.movie.backdrop_path);
-    //   this.hasBackdrop_img = true;
-    //   this.backdrop_img_high = this.movieService.getMovieImagePath(
-    //     this.movie.backdrop_path,
-    //     'original'
-    //   );
-    //   console.log("here is the backdrop_img_high", this.backdrop_img_high);
-    // } else {
-    //   this.hasBackdrop_img = false;
-    // }
     if (this.background_imge){
       this.hasBackdrop_img = true;
     } else {
@@ -121,6 +111,12 @@ export class MovieDetailComponent implements OnInit{
       );
     } else {
       this.hasPoster_img = false;
+    }
+  }
+
+  ngOnDestroy(): void {
+    if (this.currentDialogRef && this.currentDialogRef.componentInstance) {
+      this.currentDialogRef.close();
     }
   }
 }

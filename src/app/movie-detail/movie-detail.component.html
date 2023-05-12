@@ -1,7 +1,9 @@
 <main class="host" [ngStyle]="{'background-image': 'url(' + background_imge + ')', 'background-size': 'cover'}">
     <div class="container">
         <section class="movie_info">
-            <p class="movie_name">{{ movie?.title || movie?.original_title }}</p>
+            <div>
+                <p class="movie_name">{{ movie?.title || movie?.original_title }}</p>
+            </div>
             <p class="movie_info_list">
                 <mat-icon>star</mat-icon>
                 <span style="font-size: 1.6rem" class="fc">
