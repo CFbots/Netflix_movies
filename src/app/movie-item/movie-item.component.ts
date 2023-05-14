@@ -11,7 +11,7 @@ import { ImgUrl } from '../app.module';
 })
 export class MovieItemComponent implements OnInit{
   @Input('movie')movie!:Movie;
-
+  isLoading: boolean = false;
   constructor(
     @Inject(ImgUrl) private imgUrl: string,
     private router: Router
@@ -21,6 +21,7 @@ export class MovieItemComponent implements OnInit{
     this.movie.poster_path = this.imgUrl + this.movie.poster_path;
   } 
   goToDetailPage() {
+    this.isLoading = true;
     this.router.navigate(['movie-list', this.movie.id])
   }
 }

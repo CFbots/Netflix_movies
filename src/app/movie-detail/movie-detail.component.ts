@@ -38,20 +38,6 @@ export class MovieDetailComponent implements OnInit{
       this.id = Number(param.get('id'));
     })
 
-    this.movieService.getMovieInfo(this.id).subscribe(movie => {
-      this.movie = movie;
-      this.type = this.movie.genres?.map(({ name }) => name).join(', ');
-      if(this.movie.backdrop_path){
-        this.background_imge = this.movieService.getMovieImagePath(this.movie.backdrop_path,'original');
-        this.hasBackdrop_img = true;
-      } else {
-        this.background_imge = "";
-        this.hasBackdrop_img = false;
-      }
-      // console.log("getting the movie!", this.movie);
-      // console.log("getting the movie title!", this.movie.title);
-    });
-
     this.getMovieSource();
   }
 
@@ -72,28 +58,31 @@ export class MovieDetailComponent implements OnInit{
   }
   
   private getMovieSource() {
-    this.movieService.getMovieInfo(this.id, 'videos').subscribe(videos => {
-      if (videos && videos.results) {
-        this.movieVideos = [...videos.results];
-        // console.log("getting the movieVideos!", this.movieVideos);
+    this.movie = this.activatedRoute.snapshot.data['movie'];
+    this.type = this.movie.genres?.map(({ name }) => name).join(', ');
+      if(this.movie.backdrop_path){
+        this.background_imge = this.movieService.getMovieImagePath(this.movie.backdrop_path,'original');
+        this.hasBackdrop_img = true;
+      } else {
+        this.background_imge = "";
+        this.hasBackdrop_img = false;
       }
-    });
 
-    this.movieService.getMovieInfo(this.id, 'credits').subscribe(actors => {
-      this.actors = actors.cast.map((actor: Cast): Cast => {
-        const profile_path = actor.profile_path? this.movieService.getMovieImagePath(actor.profile_path, 'w500') : '';
-        return {...actor, profile_path};
-      })
-      // console.log("getting the actor!", this.actors);
-    });
+    const videos = this.activatedRoute.snapshot.data['videos'];
+    if (videos?.results) {
+      this.movieVideos = [...videos.results];
+    }
 
-    this.movieService.getMovieInfo(this.id, 'images').subscribe(backdrops => {
-      this.posters = backdrops.backdrops.map((backdrop: Backdrop): Backdrop => {
-        const file_path = backdrop.file_path? this.movieService.getMovieImagePath(backdrop.file_path, 'w500') : '';
-        return {...backdrop, file_path};
-      })
-      // console.log("getting the images!", this.posters);
-    });
+    this.actors = this.activatedRoute.snapshot.data['cast'].map((actor: Cast): Cast => {
+      const profile_path = actor.profile_path? this.movieService.getMovieImagePath(actor.profile_path, 'w500') : '';
+      return {...actor, profile_path};
+    })
+
+    this.posters = this.activatedRoute.snapshot.data['posters'].map((backdrop: Backdrop): Backdrop => {
+      const file_path = backdrop.file_path? this.movieService.getMovieImagePath(backdrop.file_path, 'w500') : '';
+      return {...backdrop, file_path};
+    })
+
   }
 
   ngOnDestroy(): void {

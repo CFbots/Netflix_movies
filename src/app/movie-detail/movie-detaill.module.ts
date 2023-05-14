@@ -7,6 +7,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
 import { TrailerYoutubeComponent } from './trailer-youtube/trailer-youtube.component';
 import { YouTubePlayerModule } from '@angular/youtube-player';
+import { MovieCreditResolveService } from '../services/resolvers/movie-credit-resolve.service';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 const routes: Routes = [
     {path: '', component: MovieDetailComponent}
@@ -19,14 +21,17 @@ const routes: Routes = [
   imports: [
     CommonModule,
     ReactiveFormsModule,
+    MatProgressSpinnerModule,
     MatIconModule,
     MatDialogModule,
     RouterModule.forChild(routes),
     YouTubePlayerModule 
   ],
+  providers:[MovieCreditResolveService], 
   exports: [
     MovieDetailComponent,
-    TrailerYoutubeComponent
+    TrailerYoutubeComponent, 
+    MatProgressSpinnerModule
   ]
 })
 export class MovieDetailModule { }

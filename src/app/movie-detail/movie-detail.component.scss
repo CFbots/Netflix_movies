@@ -5,6 +5,15 @@
   flex-direction: $direction;
 }
 
+.spinner_container{
+  height: 100vw;
+  background-color: black;
+}
+mat-spinner{
+  margin: auto auto;
+  position: relative;
+  top: 10rem;
+}
 .host {
   font-family: sans-serif;
   position: relative;

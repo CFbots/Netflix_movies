@@ -6,12 +6,13 @@
   }
 *{
   background-color: black;
+  width: 90rem;
 }  
 .video_container {
     position: relative;
-    margin-top: 1em;
+    margin: 1em auto;
     height: 32rem;
-    width: 70rem;
+    width: 65rem;
     background-color: black;
     border-radius: 20px;
     margin: 0 auto;
@@ -26,6 +27,10 @@
       flex-wrap: nowrap;
       @include flex();
 
+      youtube-player{
+        padding: 1rem auto;
+        margin: auto 20rem;
+      }
       .mat-icon{
         background-color: #8d143c;
       }

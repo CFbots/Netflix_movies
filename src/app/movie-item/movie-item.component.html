@@ -14,5 +14,8 @@
 
         <button (click)="goToDetailPage()">More Details</button>
     </div>
+    <div class="spinner_container" *ngIf="isLoading">
+        <mat-spinner color="accent"  diameter="60"></mat-spinner>
+    </div>
 </div>
 </html>
