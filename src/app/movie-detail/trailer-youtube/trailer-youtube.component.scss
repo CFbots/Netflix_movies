@@ -1,81 +1,91 @@
 @mixin flex($justify: center, $items: center, $direction: row) {
-    display: flex;
-    justify-content: $justify;
-    align-items: $items;
-    flex-direction: $direction;
-  }
+  display: flex;
+  justify-content: $justify;
+  align-items: $items;
+  flex-direction: $direction;
+}
 *{
   background-color: black;
-  width: 90rem;
-}  
+  margin: 0 0;
+}
+mat-dialog-content{
+  width: 80rem;
+}
+mat-dialog-actions{
+  padding: 0 50%;
+}
+
+.mat-icon{
+  background-color: #8d143c;
+}
+.close-button{
+  height: 3rem;
+  width: 10rem;
+  color: white;
+  background-color: #8d143c;
+  border: none;
+  margin: 1rem auto
+}
 .video_container {
-    position: relative;
-    margin: 1em auto;
-    height: 32rem;
-    width: 65rem;
-    background-color: black;
-    border-radius: 20px;
-    margin: 0 auto;
+  position: relative;
+  height: 32rem;
+  width: 60rem;
+  background-color: black;
+  border-radius: .5rem;
+  position: relative;
+  left: 10rem;
+  @include flex();
+
+  button {
+    color: white;
+    background-color: #8d143c;
+  }
+
+  .video_list {
+    height: 100%;
+    flex-wrap: nowrap;
     @include flex();
 
-    button {
-      color: white;
+    .no_video {
+      position: absolute;
+      top: 0;
+
+      img {
+        position: absolute;
+        bottom: 2em;
+        right: 2em;
+        height: 30%;
+        width: auto;
+        border-radius: 2px;
+      }
     }
-  
-    .video_list {
-      height: 100%;
-      flex-wrap: nowrap;
+
+    .video_switcher_left,
+    .video_switcher_right {
       @include flex();
 
-      youtube-player{
-        padding: 1rem auto;
-        margin: auto 20rem;
-      }
-      .mat-icon{
-        background-color: #8d143c;
-      }
-      .no_video {
-        position: absolute;
-        top: 0;
-  
-        img {
-          position: absolute;
-          bottom: 2em;
-          right: 2em;
-          height: 30%;
-          width: auto;
-          border-radius: 2px;
-        }
-      }
-  
-      .video_switcher_left,
-      .video_switcher_right {
-        @include flex();
-  
-        position: absolute;
-        top: 50%;
-        font-size: 2em;
-        height: 100px;
-        width: 100px;
-        border-radius: 50%;
-        background-color: #8d143c;
-      }
-      .video_switcher_left {
-        left: 0;
-        transform: translate(-120%, -50%);
-      }
-      .video_switcher_right {
-        right: 0;
-        transform: translate(120%, -50%);
-      }
+      position: absolute;
+      top: 50%;
+      font-size: 2em;
+      height: 100px;
+      width: 100px;
+      border-radius: 50%;
+      background-color: #8d143c;
+    }
+
+    .video_switcher_left {
+      left: 0;
+      transform: translate(-120%, -50%);
+    }
+
+    .video_switcher_right {
+      right: 0;
+      transform: translate(120%, -50%);
+    }
+
+    .video_switcher_left:hover,
+    .video_switcher_right:hover {
+      background-color: #bc0643;
     }
   }
-  .mat-raised-button{
-    background-color: #8d143c;
-    color: white;
-    margin: 0 auto;
-    border-radius: .2rem;
-    border: none;
-    height: 3rem;
-    width: 6rem;
-  }
+}
