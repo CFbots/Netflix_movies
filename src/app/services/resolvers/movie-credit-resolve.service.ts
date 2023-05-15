@@ -4,7 +4,7 @@ import {
   RouterStateSnapshot,
   ActivatedRouteSnapshot
 } from '@angular/router';
-import { MovieService } from '../movie.service';
+import { MovieService } from '../movie/movie.service';
 import { map } from 'rxjs';
 @Injectable({
   providedIn: 'root'

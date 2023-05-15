@@ -16,7 +16,7 @@
             <div *ngIf="!api_key?.valid && (api_key?.dirty || api_key?.touched)">
                 <p class="error-message">Tmdb Api_Key is required!</p>
             </div>
-            <button routerLink="/register/3" [disabled]="!registerForm_2.valid" [ngStyle]="{'background-color': !registerForm_2.valid ? 'rgb(165, 105, 96)':'rgb(205, 33, 7)'}">Next</button>
+            <button [disabled]="!registerForm_2.valid" [ngStyle]="{'background-color': !registerForm_2.valid ? 'rgb(165, 105, 96)':'rgb(205, 33, 7)'}">Next</button>
         </form>
     </div>
 </main>

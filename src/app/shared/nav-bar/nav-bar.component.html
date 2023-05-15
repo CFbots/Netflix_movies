@@ -1,4 +1,11 @@
 <nav>
     <img routerLink="home" src="../../assets/logo_transparent.png" alt="logo">
-    <button routerLink="/sign-in">Sign In</button>
+    <div class="sign-in" *ngIf="isSignedIn">
+        <p class="username">{{username}}<p>
+        <button (click)="signOut()">Sign Out</button>
+    </div>
+    <div *ngIf="!isSignedIn">
+        <button routerLink="/sign-in">Sign In</button>
+    </div>
+
 </nav>

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { debounceTime, map, Observable, tap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/authentication/auth.service';
 
 @Component({
   selector: 'app-register-first',
@@ -13,7 +15,11 @@ export class RegisterFirstComponent implements OnInit{
   isLoading = false;
 
 
-  constructor(private formBuilder: FormBuilder, private http: HttpClient) {}
+  constructor(private formBuilder: FormBuilder, 
+    private router: Router,
+    private http: HttpClient, 
+    private authService:AuthService
+    ) {}
   ngOnInit(): void {
     this.registerForm_1 = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email], [this.checkEmail]],
@@ -38,9 +44,6 @@ export class RegisterFirstComponent implements OnInit{
     const val = control.value;
     const url = "http://localhost:4231/auth/check-email";
     return this.http.post(url, {email: val}).pipe(
-      // tap((_) =>{
-        // console.log("from http!")
-      //   }),
       debounceTime(500),
       map((data: any) => {
         console.log(data)
@@ -60,6 +63,8 @@ export class RegisterFirstComponent implements OnInit{
   }
 
   onSubmit() {
-    console.log(this.registerForm_1.value);
+    this.authService.addUserInfo({ "email": this.email?.value, "password": this.password?.value })
+    this.router.navigate(['/register/2'])
+    // console.log(this.registerForm_1.value);
   }
 }

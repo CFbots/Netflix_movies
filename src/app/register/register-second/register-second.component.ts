@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators} from '@angular/forms';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/authentication/auth.service';
 
 @Component({
   selector: 'app-register-second',
@@ -8,7 +10,10 @@ import { FormBuilder, FormGroup, Validators} from '@angular/forms';
 })
 export class RegisterSecondComponent implements OnInit{
   registerForm_2!: FormGroup;
-  constructor(private formBuilder: FormBuilder){}
+
+  constructor(private formBuilder: FormBuilder,
+    private router: Router,
+    private authService: AuthService){}
   ngOnInit(): void {
     this.registerForm_2 = this.formBuilder.group({
       username:["", Validators.required],
@@ -23,6 +28,7 @@ export class RegisterSecondComponent implements OnInit{
     return this.registerForm_2.get("api_key");
   }
   onSubmit() {
-    console.log(this.registerForm_2.value);
+    this.authService.addUserInfo({ "username": this.username?.value, "tmdb_key": this.api_key?.value })
+    this.router.navigate(['/register/3'])
   }
 }

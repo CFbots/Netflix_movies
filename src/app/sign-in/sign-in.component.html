@@ -11,7 +11,11 @@
             <div *ngIf="!password?.valid && (password?.dirty || password?.touched)">
                 <p id="error-message">Your password must contain between 4 and 20 characters.</p>
             </div>
-            <button [disabled]="!loginForm.valid" [ngStyle]="{'background-color': !loginForm.valid ? 'rgb(165, 105, 96)':'rgb(205, 33, 7)'}">sign in</button>
+            <button [disabled]="!loginForm.valid" 
+                    [ngStyle]="{'background-color': !loginForm.valid ? 'rgb(165, 105, 96)':'rgb(205, 33, 7)'}"
+                    >
+                    sign in</button>
+            <p *ngIf="loginMsg"> {{ loginMsg }}</p>
             <div class="remember-help-container">
                 <div class="remember">
                     <input type="checkbox" name="remember-me" 

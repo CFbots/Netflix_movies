@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/services/authentication/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register-choose-plan',
@@ -14,13 +16,22 @@ export class RegisterChoosePlanComponent implements OnInit{
   slectedTextColor = "rgb(94, 89, 89)"; 
   unslectedTextColor = "rgb(152, 143, 143)";
 
+  role:string[] = ['USER', 'SUPERUSER', 'ADMIN'];
+
+  constructor(private readonly authService: AuthService,
+    private router: Router){}
   ngOnInit(): void {
   }
 
   selectedPlan(index:number){
     this.selectedIndex = index;
   }
-onSumbit(){
-
+  sendSignUp(){
+    this.authService.addUserInfo({ "role": this.role[this.selectedIndex]})
+    this.authService.signUp().subscribe(
+      ()=>{
+      this.router.navigate(['home'])
+    }
+  )
 }
 }

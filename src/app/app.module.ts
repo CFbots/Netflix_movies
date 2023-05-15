@@ -12,6 +12,7 @@ export const ImgUrl = new InjectionToken<string>('');
 export const TmdbBaseUrl = new InjectionToken<string>('');
 export const MovieImgBaseUrl = new InjectionToken<string>('');
 export const ApiKey = new InjectionToken<string>('');
+export const AuthApiPath = new InjectionToken<string>('');
 
 @NgModule({
   declarations: [
@@ -43,6 +44,10 @@ export const ApiKey = new InjectionToken<string>('');
   {
     provide: ApiKey,
     useValue: '903ebd52027fe49503e599459ee42446',
+  },
+  {
+    provide: AuthApiPath,
+    useValue: 'http://localhost:4231',
   },
   ],
   bootstrap: [AppComponent]

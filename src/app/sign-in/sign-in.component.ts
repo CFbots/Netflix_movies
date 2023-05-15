@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from '../services/authentication/auth.service';
 @Component({
   selector: 'app-sign-in',
   templateUrl: './sign-in.component.html',
@@ -8,8 +9,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 export class SignInComponent implements OnInit{
   loginForm!: FormGroup;
-
-  constructor(private formBuilder: FormBuilder) {}
+  loginMsg: string = "";
+  constructor(private formBuilder: FormBuilder, private authService: AuthService) {}
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
@@ -26,5 +27,9 @@ export class SignInComponent implements OnInit{
   }
   onSubmit() {
     console.log(this.loginForm.value);
+    this.authService.signIn({ email: this.email?.value, password: this.password?.value }).subscribe(()=>{}, (error)=>{
+      // console.log("error:", error);
+      this.loginMsg = "Wrong email or password, please try again!";
+    });
   }
 }

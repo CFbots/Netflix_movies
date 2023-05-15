@@ -4,13 +4,14 @@ import { MovieCreditResolveService } from './services/resolvers/movie-credit-res
 import { MovieVideoResolveService } from './services/resolvers/movie-video-resolve.service';
 import { MoviePosterResolveService } from './services/resolvers/movie-poster-resolve.service';
 import { MovieResolveService } from './services/resolvers/movie-resolve.service';
+import { AuthGuard } from './core/guard/auth.guard';
 
 const routes: Routes = [
   { path: 'home', loadChildren:() => import('./homepage/homepage.module').then((m)=>(m.HomePageModule))},
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'sign-in', loadChildren:()=>import('./sign-in/sign-in.module').then((m)=>m.SignInModule)}, 
   { path: 'register', loadChildren: () => import('./register/register.module').then((m) => m.RegisterModule) }, 
-  { path: 'movie-list', loadChildren:() => import('./movie-list/movie-list.module').then((m)=>(m.MovieListModule))},
+  { path: 'movie-list', loadChildren:() => import('./movie-list/movie-list.module').then((m)=>(m.MovieListModule)), canActivate: [AuthGuard]},
   { path: 'movie-list/:id', loadChildren: () => import('./movie-detail/movie-detaill.module').then((m) => m.MovieDetailModule), resolve:{
     cast: MovieCreditResolveService,
     videos: MovieVideoResolveService,

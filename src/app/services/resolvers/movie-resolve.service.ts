@@ -4,7 +4,7 @@ import {
   RouterStateSnapshot,
   ActivatedRouteSnapshot
 } from '@angular/router';
-import { MovieService } from '../movie.service';
+import { MovieService } from '../movie/movie.service';
 import { Observable, map } from 'rxjs';
 
 
