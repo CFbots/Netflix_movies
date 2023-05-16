@@ -27,11 +27,7 @@ export class RegisterChoosePlanComponent implements OnInit{
     this.selectedIndex = index;
   }
   sendSignUp(){
-    this.authService.addUserInfo({ "role": this.role[this.selectedIndex]})
-    this.authService.signUp().subscribe(
-      ()=>{
-      this.router.navigate(['home'])
-    }
-  )
+    this.authService.addUserInfo({ "role": this.role[this.selectedIndex]});
+    this.authService.signUp().subscribe();
 }
 }

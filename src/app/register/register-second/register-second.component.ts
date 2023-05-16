@@ -17,7 +17,7 @@ export class RegisterSecondComponent implements OnInit{
   ngOnInit(): void {
     this.registerForm_2 = this.formBuilder.group({
       username:["", Validators.required],
-      api_key:["", Validators.required]
+      api_key:["", [Validators.required, Validators.minLength(15)]]
     });
   }
   get username(){

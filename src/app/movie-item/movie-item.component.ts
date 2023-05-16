@@ -1,7 +1,7 @@
 import { Component, Inject, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Movie } from '../interface/movie.interface';
-import { ImgUrl } from '../app.module';
+import { ImgUrl } from '../core/core.module';
 
 
 @Component({

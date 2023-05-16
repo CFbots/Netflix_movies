@@ -14,7 +14,8 @@
             <label for="api-key">Tmdb Api_Key</label>
             <input id="api-key" type="string" placeholder="Add a Tmdb Api_Key" formControlName="api_key">
             <div *ngIf="!api_key?.valid && (api_key?.dirty || api_key?.touched)">
-                <p class="error-message">Tmdb Api_Key is required!</p>
+                <p class="error-message" *ngIf="api_key?.errors?.['minlength']">Tmdb Api_Key must be longer than or equal to 15 characters!</p>
+                <p class="error-message" *ngIf="api_key?.errors?.['required']">Tmdb Api_Key is required!</p>
             </div>
             <button [disabled]="!registerForm_2.valid" [ngStyle]="{'background-color': !registerForm_2.valid ? 'rgb(165, 105, 96)':'rgb(205, 33, 7)'}">Next</button>
         </form>

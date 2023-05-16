@@ -6,13 +6,7 @@ import { AppComponent } from './app.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { SharedModule } from './shared/shared.module';
-
-export const MovieUrl = new InjectionToken<string>('');
-export const ImgUrl = new InjectionToken<string>('');
-export const TmdbBaseUrl = new InjectionToken<string>('');
-export const MovieImgBaseUrl = new InjectionToken<string>('');
-export const ApiKey = new InjectionToken<string>('');
-export const AuthApiPath = new InjectionToken<string>('');
+import { CoreModule } from './core/core.module';
 
 @NgModule({
   declarations: [
@@ -24,31 +18,10 @@ export const AuthApiPath = new InjectionToken<string>('');
     ReactiveFormsModule, 
     HttpClientModule,
     MatFormFieldModule,
-    SharedModule
+    SharedModule,
+    CoreModule.forRoot()
   ],
-  providers: [{
-    provide: MovieUrl,
-    useValue: 'https://api.themoviedb.org/3/trending/all/week?api_key=903ebd52027fe49503e599459ee42446',
-  }, 
-  { 
-    provide: ImgUrl, 
-    useValue:"https://image.tmdb.org/t/p/w440_and_h660_face"},
-  {
-    provide: TmdbBaseUrl,
-    useValue: 'https://api.themoviedb.org/3',
-  }, 
-  {
-    provide: MovieImgBaseUrl,
-    useValue: 'https://image.tmdb.org/t/p',
-  },
-  {
-    provide: ApiKey,
-    useValue: '903ebd52027fe49503e599459ee42446',
-  },
-  {
-    provide: AuthApiPath,
-    useValue: 'http://localhost:4231',
-  },
+  providers: [
   ],
   bootstrap: [AppComponent]
 })

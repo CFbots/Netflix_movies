@@ -1,10 +1,10 @@
 import { Inject, Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, catchError, tap, throwError} from 'rxjs';
-import { AuthApiPath } from 'src/app/app.module';
 import { AppUserAuth, AuthResponse, UserInfo, UserRegister, UserRole, UserSignIn } from 'src/app/interface/user.interface';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { AuthApiPath } from 'src/app/core/core.module';
 
 @Injectable({
   providedIn: 'root'
@@ -52,8 +52,9 @@ export class AuthService{
   signUp(): Observable<AuthResponse>{
     return this.http.post<AuthResponse>(`${this.authApiPath}/auth/signup`, this.userRegister).pipe(
         tap(({ accessToken, role }: AuthResponse) => {
-          console.log("SignUp accessToken, role", accessToken, role)
-          this.router.navigate(['/movies']);
+          console.log("SignUp accessToken, role", accessToken, role);
+          this.setUserValuebyToken({ accessToken, role });
+          this.router.navigate(['movie-list']);
         }),
       );
   }
