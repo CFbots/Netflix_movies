@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { NavBarComponent } from "./nav-bar/nav-bar.component";
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
-import { HomepageComponent } from '../homepage/homepage.component';
+import { HomepageComponent } from '../pages/homepage/homepage.component';
 
 const routes: Routes = [
   {path: '', component: HomepageComponent}

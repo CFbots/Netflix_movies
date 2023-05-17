@@ -3,7 +3,7 @@ import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn,
 import { debounceTime, map, Observable, tap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { AuthService } from 'src/app/services/authentication/auth.service';
+import { AuthService } from 'src/app/core/services/authentication/auth.service';
 
 @Component({
   selector: 'app-register-first',

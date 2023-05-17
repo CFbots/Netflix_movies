@@ -1,8 +1,8 @@
 import { Inject, Injectable, OnInit } from '@angular/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { BehaviorSubject, Observable, Subject, map, tap } from 'rxjs';
-import { Movie } from '../../interface/movie.interface';
-import { DiscoverMovie } from '../../interface/discoverMovie.interface';
+import { Movie } from '../../../interface/movie.interface';
+import { DiscoverMovie } from '../../../interface/discoverMovie.interface';
 import { ApiKey, MovieImgBaseUrl, MovieUrl, TmdbBaseUrl } from 'src/app/core/core.module';
 
 @Injectable({

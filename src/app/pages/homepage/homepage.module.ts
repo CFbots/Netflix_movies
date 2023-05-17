@@ -5,6 +5,8 @@ import { HomepageComponent } from "./homepage.component";
 import { HomepageBackgroundComponent } from "../homepage-background/homepage-background.component";
 
 
+
+
 const routes: Routes = [
     {path: '', component: HomepageComponent}
 ]

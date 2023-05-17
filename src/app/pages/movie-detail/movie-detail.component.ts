@@ -1,11 +1,11 @@
 import { Component, OnInit, ViewChild  } from '@angular/core';
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
-import { MovieService } from '../services/movie/movie.service';
-import { MovieDetail } from '../interface/movie-detail.interface';
-import { Video } from '../interface/video.interface';
-import { Cast } from '../interface/cast.interface';
-import { Backdrop, Poster } from '../interface/movie-image.interface';
+import { MovieService } from '../../core/services/movie/movie.service';
+import { MovieDetail } from '../../interface/movie-detail.interface';
+import { Video } from '../../interface/video.interface';
+import { Cast } from '../../interface/cast.interface';
+import { Backdrop, Poster } from '../../interface/movie-image.interface';
 import { YouTubePlayer } from '@angular/youtube-player';
 import { TrailerYoutubeComponent } from './trailer-youtube/trailer-youtube.component';
 
