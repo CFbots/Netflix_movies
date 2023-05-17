@@ -1,5 +1,9 @@
 import { InjectionToken, ModuleWithProviders, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+// import { JwtInterceptor } from '@auth0/angular-jwt';
+import { ErrorInterceptor } from './interceptor/error.interceptor';
+
 
 export const MovieUrl = new InjectionToken<string>('');
 export const ImgUrl = new InjectionToken<string>('');
@@ -10,6 +14,7 @@ export const AuthApiPath = new InjectionToken<string>('');
 
 @NgModule({
   declarations: [],
+  exports: [],
   imports: [
     CommonModule
   ], 
@@ -41,6 +46,16 @@ export class CoreModule {
         {
           provide: AuthApiPath,
           useValue: 'http://localhost:4231',
+        },
+        // {
+        //   provide: HTTP_INTERCEPTORS,
+        //   useClass: JwtInterceptor,
+        //   multi: true,
+        // },
+        {
+          provide: HTTP_INTERCEPTORS,
+          useClass: ErrorInterceptor,
+          multi: true,
         },
       ]
     }
