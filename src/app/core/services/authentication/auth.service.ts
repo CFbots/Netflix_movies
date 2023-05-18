@@ -1,5 +1,5 @@
 import { Inject, Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, catchError, tap, throwError} from 'rxjs';
+import { BehaviorSubject, Observable, catchError, of, tap, throwError} from 'rxjs';
 import { AppUserAuth, AuthResponse, UserInfo, UserRegister, UserRole, UserSignIn } from 'src/app/interface/user.interface';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
@@ -26,7 +26,7 @@ export class AuthService{
     @Inject(AuthApiPath) private authApiPath: string) { }
 
   signIn(userSignIn: UserSignIn): Observable<AuthResponse>{
-    return this.http.post<AuthResponse>(`${this.authApiPath}/auth/signin`,userSignIn).pipe(
+    return this.http.post<AuthResponse>(`${this.authApiPath}/auth/signin`, userSignIn).pipe(
       tap(({ accessToken, role }: AuthResponse) => {
         console.log("accessToken, role", accessToken, role);
         this.setUserValuebyToken({accessToken, role});
@@ -36,6 +36,7 @@ export class AuthService{
   }
 
   signOut(){
+    localStorage.removeItem('access_token');
     this.stopRefreshTokenTimer();
     this.userSubject$.next({});
     this.router.navigate(['home'])
@@ -59,8 +60,14 @@ export class AuthService{
       );
   }
 
-  refreshToken():Observable<AuthResponse>{
-    const { id, username, email, tmdb_key, jwtToken, role } = this.userValue;
+  refreshToken():Observable<AuthResponse | string>{
+    const currentToken = localStorage.getItem('access_token');
+    if (!currentToken) {
+      this.router.navigate(['/']);
+      return of("error with jwt token");
+    }
+
+    const { id, username, email, tmdb_key, jwtToken, role } = this.jwtHelper.decodeToken(currentToken);
     const user = { id, username, email, tmdb_key, role};
     return this.http.post<AuthResponse>(`${this.authApiPath}/auth/refresh-token`, user)
     .pipe(
@@ -70,7 +77,21 @@ export class AuthService{
       }))
   }
 
+  upgradePermission(userRole: { role: UserRole }): Observable<AuthResponse> {
+    this.stopRefreshTokenTimer();
+    return this.http.patch<AuthResponse>(`${this.authApiPath}/auth/userupdate`, userRole)
+    .pipe(
+      tap(({accessToken, role}: AuthResponse) => {
+        this.setUserValuebyToken({ accessToken, role });
+        this.router.navigate(['movie-list']);
+    }),
+    catchError((error) => {
+      return throwError(()=>{console.log("Something went wrong!", error)});
+    }))
+  }
+
   private setUserValuebyToken = ({accessToken, role}: AuthResponse) => {
+    localStorage.setItem('access_token', accessToken);
     const { id, username, email, tmdb_key, exp } = this.jwtHelper.decodeToken(accessToken);
     const user = { id, username, email, tmdb_key, role, jwtToken: accessToken };
     console.log("user", user);

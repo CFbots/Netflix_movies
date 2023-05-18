@@ -27,8 +27,8 @@ export class SignInComponent implements OnInit{
   }
   onSubmit() {
     console.log(this.loginForm.value);
-    this.authService.signIn({ email: this.email?.value, password: this.password?.value }).subscribe(()=>{}, (error)=>{
-      // console.log("error:", error);
+    this.authService.signIn(this.loginForm.value).subscribe(()=>{}, (error)=>{
+      console.log("error:", error);
       this.loginMsg = "Wrong email or password, please try again!";
     });
   }

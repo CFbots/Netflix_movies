@@ -9,9 +9,14 @@ import { TrailerYoutubeComponent } from './trailer-youtube/trailer-youtube.compo
 import { YouTubePlayerModule } from '@angular/youtube-player';
 import { MovieCreditResolveService } from '../../core/services/resolvers/movie-credit-resolve.service';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MovieItemGuard } from 'src/app/core/guard/movie-detail.guard';
+import { UserRole } from 'src/app/interface/user.interface';
 
 const routes: Routes = [
-    {path: '', component: MovieDetailComponent}
+    {path: '', component: MovieDetailComponent, canActivate:[MovieItemGuard],
+    data: {
+      claimType: [UserRole.ADMIN, UserRole.SUPERUSER],
+    },}
 ]
 @NgModule({
   declarations: [
