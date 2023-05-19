@@ -1,8 +1,10 @@
-import { InjectionToken, ModuleWithProviders, NgModule } from '@angular/core';
+import { APP_INITIALIZER, InjectionToken, ModuleWithProviders, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthWithLocalInterceptor } from "./interceptor/auth-with-local.interceptor";
 import { ErrorInterceptor } from './interceptor/error.interceptor';
+import { appInitializer } from './app.initializer';
+import { AuthService } from './services/authentication/auth.service';
 
 
 export const MovieUrl = new InjectionToken<string>('');
@@ -46,6 +48,11 @@ export class CoreModule {
         {
           provide: AuthApiPath,
           useValue: 'http://localhost:4231',
+        },
+        { provide: APP_INITIALIZER, 
+          useFactory: appInitializer, 
+          multi: true, 
+          deps: [AuthService] 
         },
         {
           provide: HTTP_INTERCEPTORS,

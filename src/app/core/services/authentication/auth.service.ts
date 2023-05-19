@@ -28,7 +28,7 @@ export class AuthService{
   signIn(userSignIn: UserSignIn): Observable<AuthResponse>{
     return this.http.post<AuthResponse>(`${this.authApiPath}/auth/signin`, userSignIn).pipe(
       tap(({ accessToken, role }: AuthResponse) => {
-        console.log("accessToken, role", accessToken, role);
+        console.log("Sign in! accessToken and role: ", accessToken, role);
         this.setUserValuebyToken({accessToken, role});
         this.router.navigate(['/movie-list']);
       }),
@@ -47,13 +47,13 @@ export class AuthService{
       ...this.userRegister,
       ...userInfo,
     };
-    console.log("userRegister:", this.userRegister)
+    // console.log("userRegister:", this.userRegister)
   }
 
   signUp(): Observable<AuthResponse>{
     return this.http.post<AuthResponse>(`${this.authApiPath}/auth/signup`, this.userRegister).pipe(
         tap(({ accessToken, role }: AuthResponse) => {
-          console.log("SignUp accessToken, role", accessToken, role);
+          console.log("SignUp! accessToken, role:", accessToken, role);
           this.setUserValuebyToken({ accessToken, role });
           this.router.navigate(['movie-list']);
         }),
@@ -63,7 +63,7 @@ export class AuthService{
   refreshToken():Observable<AuthResponse | string>{
     const currentToken = localStorage.getItem('access_token');
     if (!currentToken) {
-      this.router.navigate(['/']);
+      this.router.navigate(['home']);
       return of("error with jwt token");
     }
 
@@ -84,9 +84,10 @@ export class AuthService{
       tap(({accessToken, role}: AuthResponse) => {
         this.setUserValuebyToken({ accessToken, role });
         this.router.navigate(['movie-list']);
+        console.log("updating the user role!")
     }),
     catchError((error) => {
-      return throwError(()=>{console.log("Something went wrong!", error)});
+      return throwError(()=>{console.log("Something went wrong when upgrading role!", error)});
     }))
   }
 
@@ -94,7 +95,7 @@ export class AuthService{
     localStorage.setItem('access_token', accessToken);
     const { id, username, email, tmdb_key, exp } = this.jwtHelper.decodeToken(accessToken);
     const user = { id, username, email, tmdb_key, role, jwtToken: accessToken };
-    console.log("user", user);
+    // console.log("user", user);
     this.userSubject$.next(user);
     console.log("refresh the token at:", exp);
     this.startRefreshTokenTimer(exp);
