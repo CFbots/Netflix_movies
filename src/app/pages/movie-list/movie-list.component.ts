@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MovieService } from '../../core/services/movie/movie.service';
 import { Movie } from '../../interface/movie.interface';
 import { Observable } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-movie-list',
@@ -10,13 +11,11 @@ import { Observable } from 'rxjs';
 })
 export class MovieListComponent implements OnInit{
   movies: Movie[] = [];
-  movies$!: Observable<Movie[]>;
 
-  constructor(private movieService: MovieService){ }
+  constructor(private activatedRoute: ActivatedRoute){ }
   ngOnInit(): void {
-    this.movieService.getMovie().subscribe((movie)=>{
-      // console.log("from movie list!", movie);
-      this.movies = movie.results});
+    this.movies = this.activatedRoute.snapshot.data['movielists'].results;
+    // this.movieService.getMovie().subscribe((movie)=>{
+    //   this.movies = movie.results});
   }
-  
 }

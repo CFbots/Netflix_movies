@@ -3,7 +3,6 @@ body {
     height: 100%;
     margin: 0;
     font-family: sans-serif;
-    background-color: black;
     position: absolute;
   }
   .divider {
@@ -55,7 +54,7 @@ body {
     font-size: 1.7rem;
   }
   
-  .img-col img {
+  .img_col img {
     position: relative;
     display: block;
     width: 50%;
@@ -119,7 +118,7 @@ body {
     .description {
       margin-left: 0;
     }
-    .img-col {
+    .img_col {
       flex-basis: 50%;
       margin-left: 2px;
     }
