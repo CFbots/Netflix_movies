@@ -13,7 +13,7 @@ import { MovieItemGuard } from 'src/app/core/guard/movie-detail.guard';
 import { UserRole } from 'src/app/interface/user.interface';
 
 const routes: Routes = [
-    {path: '', component: MovieDetailComponent, canLoad:[MovieItemGuard],
+    {path: '', component: MovieDetailComponent, canLoad:[MovieItemGuard], canActivate:[MovieItemGuard],
     data: {
       claimType: [UserRole.ADMIN, UserRole.SUPERUSER],
     },}
