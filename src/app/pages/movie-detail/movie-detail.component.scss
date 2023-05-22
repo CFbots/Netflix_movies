@@ -5,15 +5,28 @@
   flex-direction: $direction;
 }
 
-.spinner_container{
+.btn-back {
+  color: rgb(215 218 226);
+  margin: 1rem;
+  opacity: .5;
+}
+
+.back-mat-icon{
+  color: #1111b4;
+  font-weight: bolder;
+}
+
+.spinner_container {
   height: 100vw;
   background-color: black;
 }
-mat-spinner{
+
+mat-spinner {
   margin: auto auto;
   position: relative;
   top: 10rem;
 }
+
 .host {
   font-family: sans-serif;
   position: relative;
@@ -33,7 +46,7 @@ mat-spinner{
     width: 100vw;
     @include flex(center, flex-end);
 
-    .fc {
+    .play {
       color: rgb(175, 178, 188);
       margin-right: 3px;
     }
@@ -80,7 +93,7 @@ mat-spinner{
             border-radius: 10px;
           }
         }
-        
+
         .actor_item {
           height: 9.5rem;
           width: 5rem;

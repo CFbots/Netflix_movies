@@ -1,4 +1,7 @@
 <main class="host" [ngStyle]="{'background-image': 'url(' + background_imge + ')', 'background-size': 'cover'}">
+    <button routerLink="/movie-list" class="btn-back">
+        <mat-icon class="back-mat-icon">arrow_back</mat-icon>
+    </button>
     <div class="container">
         <section class="movie_info">
             <div>
@@ -22,7 +25,7 @@
             </p>
 
             <div class="btn_list">
-                <button class="btn fc">
+                <button class="btn play">
                     <mat-icon>play_arrow</mat-icon><span>PLAY NOW</span>
                 </button>
                 <button class="btn" (click)="openDialog()">

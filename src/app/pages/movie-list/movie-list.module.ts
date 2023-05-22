@@ -5,6 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { MovieListComponent } from './movie-list.component';
 import { MovieItemComponent } from '../movie-item/movie-item.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 const routes: Routes = [
     {path: '', component: MovieListComponent}
@@ -18,6 +19,7 @@ const routes: Routes = [
     CommonModule,
     ReactiveFormsModule,
     MatProgressSpinnerModule,
+    InfiniteScrollModule,
     RouterModule.forChild(routes),
   ],
   exports: [
