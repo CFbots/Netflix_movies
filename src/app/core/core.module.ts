@@ -1,7 +1,7 @@
 import { APP_INITIALIZER, InjectionToken, ModuleWithProviders, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { AuthWithLocalInterceptor } from "./interceptor/auth-with-local.interceptor";
+import { TokenHeaderInterceptor } from "./interceptor/token-header.interceptor";
 import { ErrorInterceptor } from './interceptor/error.interceptor';
 import { appInitializer } from './app.initializer';
 import { AuthService } from './services/authentication/auth.service';
@@ -52,7 +52,7 @@ export class CoreModule {
         },
         {
           provide: HTTP_INTERCEPTORS,
-          useClass: AuthWithLocalInterceptor,
+          useClass: TokenHeaderInterceptor,
           multi: true,
         },
         {

@@ -12,7 +12,7 @@ import { AuthApiPath } from '../core.module';
 
 
 @Injectable()
-export class AuthWithLocalInterceptor implements HttpInterceptor {
+export class TokenHeaderInterceptor implements HttpInterceptor {
 
   constructor(private authService: AuthService,
     @Inject(AuthApiPath) private AuthApiPath: string) {}

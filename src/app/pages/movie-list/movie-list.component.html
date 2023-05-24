@@ -1,19 +1,11 @@
 <main>
     <div class="movie_list_container">
         <div class="movie_list">
-            <div
-            class="movie-item"
-            *ngFor="let movie of movies$ | async"
-            >
+            <div class="movie-item" *ngFor="let movie of movies$ | async">
                 <app-movie-item [movie]="movie"></app-movie-item>
             </div>
-            <div
-            class="infinite_scroll_mark"
-            infiniteScroll
-            [infiniteScrollDistance]="2"
-            [infiniteScrollThrottle]="500"
-            (scrolled)="onScroll()"
-            ></div>
+            <div class="infinite_scroll_mark" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="500"
+                (scrolled)="onScroll()"></div>
 
             <div *ngIf="!isfinished">
                 <mat-spinner color="accent"></mat-spinner>

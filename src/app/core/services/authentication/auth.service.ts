@@ -32,6 +32,9 @@ export class AuthService{
         this.setUserValuebyToken({accessToken, role});
         this.router.navigate(['/movie-list']);
       }),
+      catchError((error)=>{
+        return throwError(()=>"Something went wrong!", error)
+      })
     );
   }
 
@@ -72,7 +75,7 @@ export class AuthService{
     return this.http.post<AuthResponse>(`${this.authApiPath}/auth/refresh-token`, user)
     .pipe(
       tap(({accessToken, role}: AuthResponse) => {
-        console.log("refresh the toekn!");
+        console.log("refresh the token!");
         this.setUserValuebyToken({ accessToken, role });
       }))
   }
@@ -95,9 +98,9 @@ export class AuthService{
     localStorage.setItem('access_token', accessToken);
     const { id, username, email, tmdb_key, exp } = this.jwtHelper.decodeToken(accessToken);
     const user = { id, username, email, tmdb_key, role, jwtToken: accessToken };
-    // console.log("user", user);
     this.userSubject$.next(user);
-    console.log("refresh the token at:", exp);
+    console.log("setUserValuebyToken", user);
+    // console.log("refresh the token at:", exp);
     this.startRefreshTokenTimer(exp);
   }
 

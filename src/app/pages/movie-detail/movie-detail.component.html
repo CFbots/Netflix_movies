@@ -38,7 +38,7 @@
                 <h1>Poster</h1>
                 <div class="list">
                     <div class="poster_item" *ngFor="let poster of posters | slice:0:4">
-                        <img [src]="poster.file_path" />
+                        <img [src]="poster.file_path? poster.file_path :  '../../../assets/VGA-no-signal-image.jpeg'" />
                     </div>
                 </div>
             </div>
@@ -49,7 +49,7 @@
                     <div class="actor_item" *ngFor="let actor of actors | slice:0:10">
                         <div>
                             <img
-                                [src]="actor.profile_path? actor.profile_path :  '../../../assets/VGA-no-signal-image.jpeg'" />
+                                [src]="actor.profile_path? actor.profile_path :  '../../../assets/people_image.png'" />
                             <div style="text-align: center">{{ actor.name }}</div>
                         </div>
                     </div>

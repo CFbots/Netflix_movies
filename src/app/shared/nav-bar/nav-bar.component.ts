@@ -20,6 +20,7 @@ export class NavBarComponent implements OnInit{
   checkSignInStatus(){
     this.authService.user$.subscribe(
       (user) => {
+        console.log("user from navbar!", user);
         if (user.jwtToken && user.username){
           this.username = user.username;
           this.isSignedIn = true;

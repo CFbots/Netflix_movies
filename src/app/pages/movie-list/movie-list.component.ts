@@ -13,7 +13,7 @@ import { DiscoverMovie } from 'src/app/interface/discoverMovie.interface';
 export class MovieListComponent implements OnInit{
   // movies: Movie[] = [];
   movies$!: Observable<Movie[]>;
-  isfinished!: Boolean;
+  isfinished: Boolean = true;
 
   private discoverMovieYear: DiscoverMovie = {
     year: 2023
@@ -31,8 +31,7 @@ export class MovieListComponent implements OnInit{
   }
 
   onScroll() {
-    this.isfinished = false;
-    this.movieService.handleScroll().subscribe();
+    this.movieService.handleScroll().subscribe(()=>this.isfinished = false);
     this.isfinished = true;
   }
 }
