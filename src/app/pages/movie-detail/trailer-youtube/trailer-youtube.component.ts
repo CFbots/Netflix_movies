@@ -31,12 +31,13 @@ export class TrailerYoutubeComponent implements OnInit{
   }
 
   switchVideo(direction: string) {
+    console.log("movieVideo", this.movieVideos);
     if (direction === 'left' && this.movieVideos.length) {
-      const removedVideo: Video = this.movieVideos.shift() as Video;
-      this.movieVideos.push(removedVideo);
+      const removedVideo: Video = this.movieVideos.shift() as Video; //
+      this.movieVideos.push(removedVideo); //add to the tail
     } else if (direction === 'right' && this.movieVideos.length) {
       const removedVideo: Video = this.movieVideos.pop() as Video;
-      this.movieVideos.unshift(removedVideo);
+      this.movieVideos.unshift(removedVideo); //add to the beginning of video list
     }
   }
 }

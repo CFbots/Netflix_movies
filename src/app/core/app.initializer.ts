@@ -5,6 +5,6 @@ export function appInitializer(authService: AuthService) {
     return () => new Promise(resolve => {
         authService.refreshToken()
             .subscribe()
-            resolve(console.log("start the application!"));
+            resolve(console.log("start the application!"), );
     });
 }

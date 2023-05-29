@@ -4,7 +4,7 @@
         <p class="title">Create a password to start your membership</p>
         <p class="description">Just a few more steps and you're done!</p>
         <p class="description">We hate paperwork, too.</p>
-        <form [formGroup]="registerForm_1" (ngSubmit)="onSubmit()" novalidate>
+        <form [formGroup]="registerForm_1" (ngSubmit)="onSubmit()">
             <label for="email">Email</label>
             <input type="email" id="email" placeholder="Email" formControlName="email">
             <div *ngIf="!email?.valid && (email?.dirty || email?.touched)">

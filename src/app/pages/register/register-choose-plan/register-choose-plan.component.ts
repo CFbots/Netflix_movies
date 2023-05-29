@@ -19,8 +19,7 @@ export class RegisterChoosePlanComponent implements OnInit{
   unslectedTextColor = "rgb(152, 143, 143)";
 
   constructor(
-    private readonly authService: AuthService,
-    private router: Router){}
+    private readonly authService: AuthService){}
 
   ngOnInit(): void {
   }

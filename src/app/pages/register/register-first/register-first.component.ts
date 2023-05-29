@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { debounceTime, map, Observable, tap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/core/services/authentication/auth.service';
+import { AuthApiPath } from 'src/app/core/core.module';
 
 @Component({
   selector: 'app-register-first',
@@ -18,7 +19,8 @@ export class RegisterFirstComponent implements OnInit{
   constructor(private formBuilder: FormBuilder, 
     private router: Router,
     private http: HttpClient, 
-    private authService:AuthService
+    private authService:AuthService,
+    @Inject(AuthApiPath) private authApiPath: string
     ) {}
   ngOnInit(): void {
     this.registerForm_1 = this.formBuilder.group({
@@ -40,26 +42,26 @@ export class RegisterFirstComponent implements OnInit{
     return this.registerForm_1.get('confirm');
   }
 
+  matchPassword: ValidatorFn = (group: AbstractControl): ValidationErrors | null =>{
+    const password = group.get("password")?.value;
+    const confirm = group.get("confirm")?.value;
+    if (password != confirm) { return { 'noMatch': true } }
+    return null
+  }
+  
+  // AsyncValidator:
   checkEmail = (control: AbstractControl): Observable<ValidationErrors | null> => {
     const val = control.value;
-    const url = "http://localhost:4231/auth/check-email";
+    const url = `${this.authApiPath}/auth/check-email`;
     return this.http.post(url, {email: val}).pipe(
       debounceTime(500),
       map((data: any) => {
-        console.log(data)
         if (data) {
           return {hasEmail: true};
         }
         return null;
       })
     )
-  }
-  
-  matchPassword: ValidatorFn = (group: AbstractControl): ValidationErrors | null =>{
-    const password = group.get("password")?.value;
-    const confirm = group.get("confirm")?.value;
-    if (password != confirm) { return { 'noMatch': true } }
-    return null
   }
 
   onSubmit() {

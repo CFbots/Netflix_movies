@@ -15,7 +15,6 @@ import { TrailerYoutubeComponent } from './trailer-youtube/trailer-youtube.compo
   styleUrls: ['./movie-detail.component.scss']
 })
 export class MovieDetailComponent implements OnInit{
-  @ViewChild(YouTubePlayer, { static: true }) youTubePlayer!: YouTubePlayer;
 
   hasBackdrop_img = true;
   background_imge = '';
@@ -58,15 +57,16 @@ export class MovieDetailComponent implements OnInit{
   }
   
   private getMovieSource() {
-    this.movie = this.activatedRoute.snapshot.data['movie'];
+    this.movie = this.activatedRoute.snapshot.data['movie']; //movie detail info
     this.type = this.movie.genres?.map(({ name }) => name).join(', ');
-      if(this.movie.backdrop_path){
-        this.background_imge = this.movieService.getMovieImagePath(this.movie.backdrop_path,'original');
-        this.hasBackdrop_img = true;
-      } else {
-        this.background_imge = "";
-        this.hasBackdrop_img = false;
-      }
+
+    if(this.movie.backdrop_path){
+      this.background_imge = this.movieService.getMovieImagePath(this.movie.backdrop_path,'original');
+      this.hasBackdrop_img = true;
+    } else {
+      this.background_imge = "";
+      this.hasBackdrop_img = false;
+    }
 
     const videos = this.activatedRoute.snapshot.data['videos'];
     if (videos?.results) {

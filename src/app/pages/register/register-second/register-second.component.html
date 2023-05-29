@@ -17,7 +17,7 @@
                 <p class="error-message" *ngIf="api_key?.errors?.['minlength']">Tmdb Api_Key must be longer than or equal to 15 characters!</p>
                 <p class="error-message" *ngIf="api_key?.errors?.['required']">Tmdb Api_Key is required!</p>
             </div>
-            <button [disabled]="!registerForm_2.valid" [ngStyle]="{'background-color': !registerForm_2.valid ? 'rgb(165, 105, 96)':'rgb(205, 33, 7)'}">Next</button>
+            <button type="submit" [disabled]="!registerForm_2.valid" [ngStyle]="{'background-color': !registerForm_2.valid ? 'rgb(165, 105, 96)':'rgb(205, 33, 7)'}">Next</button>
         </form>
     </div>
 </main>

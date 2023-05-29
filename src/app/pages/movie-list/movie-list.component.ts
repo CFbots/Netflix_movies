@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MovieService } from '../../core/services/movie/movie.service';
 import { Movie } from '../../interface/movie.interface';
-// import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { DiscoverMovie } from 'src/app/interface/discoverMovie.interface';
 
@@ -21,7 +21,7 @@ export class MovieListComponent implements OnInit{
 
   constructor(
     private movieService: MovieService,
-    // private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute
     ){ }
 
   ngOnInit(): void {

@@ -1,17 +1,41 @@
-@mixin flex($justify: center, $items: center, $direction: row) {
+.btn_list{
   display: flex;
-  justify-content: $justify;
-  align-items: $items;
-  flex-direction: $direction;
+}
+
+.btn_trailer {
+  background-color: rgb(31, 88, 255);
+  border: none;
+  height: 4rem;
+  width: 10rem;
+  border-radius: 10px;
+  margin-left: 2.5rem;
+  padding-top: 0.1rem;
+}
+
+.btn_play {
+  border: none;
+  height: 4rem;
+  width: 10rem;
+  background-color: rgb(79, 81, 87);
+  color: rgb(215, 218, 226);
+  border-radius: 10px;
+  margin-right: 3px;
+  padding-left: 25px;
+}
+
+.btn_play_wrap{
+  display: flex;
+  // color:rgb(175, 178, 188);;
+  align-items:center;
+  margin: auto auto;
 }
 
 .btn-back {
-  color: rgb(215 218 226);
   margin: 1rem;
-  opacity: .5;
+  opacity: 0.5;
 }
 
-.back-mat-icon{
+.back-mat-icon {
   color: #1111b4;
   font-weight: bolder;
 }
@@ -36,132 +60,101 @@ mat-spinner {
   width: 100vw;
   background-color: rgb(0, 0, 0);
   background-size: auto;
+}
 
-  .container {
-    position: relative;
-    background: linear-gradient(to bottom,
-        rgba(0, 0, 0, 0) 10%,
-        rgba(0, 0, 0, 1) 100%);
-    height: 100vh;
-    width: 100vw;
-    @include flex(center, flex-end);
+.container {
+  position: relative;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 10%, rgba(0, 0, 0, 1) 100%);
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
 
-    .play {
-      color: rgb(175, 178, 188);
-      margin-right: 3px;
-    }
+.play {
+  color: rgb(175, 178, 188);
+  margin-right: 3px;
+}
 
-    .movie_info {
-      height: 50%;
-      width: 50%;
-      margin: 3% 0 3% 3%;
-      padding: 3% 0 3% 3%;
-      color: white;
-      @include flex(flex-start, flex-start, column);
+.movie_info {
+  height: 50%;
+  width: 50%;
+  margin: 3% 0 3% 3%;
+  padding: 3% 0 3% 3%;
+  color: white;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+}
 
-      p {
-        width: 100%;
-        margin-bottom: 2rem;
-      }
+.movie_info p {
+  width: 100%;
+  margin-bottom: 2rem;
+}
 
-      .homepage {
-        font-size: 1.2rem;
-      }
+.homepage {
+  font-size: 1.2rem;
+}
 
-      .description {
-        font-size: 1.2rem;
-        line-height: 1.8rem;
-        letter-spacing: 0.1rem;
-      }
+.description {
+  font-size: 1.2rem;
+  line-height: 1.8rem;
+  letter-spacing: 0.1rem;
+}
 
-      .list {
-        width: 100%;
-        height: 100%;
-        margin: 0 auto;
-        overflow: auto;
-        @include flex(flex-start);
+.list {
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+  overflow: auto;
+  display: flex;
+  justify-content: flex-start;
+}
 
-        .poster_item {
-          height: 10rem;
-          width: 15rem;
-          padding: 0.5rem;
-          flex-shrink: 0;
+.poster_item {
+  height: 10rem;
+  width: 15rem;
+  padding: 0.5rem;
+  flex-shrink: 0;
+}
 
-          img {
-            height: 100%;
-            width: 100%;
-            border-radius: 10px;
-          }
-        }
+.poster_item img {
+  height: 100%;
+  width: 100%;
+  border-radius: 10px;
+}
 
-        .actor_item {
-          height: 9.5rem;
-          width: 5rem;
-          padding: 0.5rem;
-          margin-right: 1rem;
-          flex-shrink: 0;
-          @include flex(flex-start, center, column);
+.actor_item {
+  height: 9.5rem;
+  width: 5rem;
+  padding: 0.5rem;
+  margin-right: 1rem;
+  flex-shrink: 0;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+}
 
-          img {
-            height: 8rem;
-            width: 5rem;
-            border-radius: 10%;
-          }
-        }
-      }
+.actor_item img {
+  height: 8rem;
+  width: 5rem;
+  border-radius: 10%;
+}
 
-      h1 {
-        padding: 0.5rem;
-        margin: 1rem auto;
-        position: relative;
-        top: 20%;
+.movie_info h1 {
+  padding: 0.5rem;
+  margin: 1rem auto;
+  position: relative;
+  top: 20%;
+}
 
-      }
-
-      .movie_name {
-        color: white;
-        font-size: 3rem;
-        font-weight: 900;
-        font-family: "Roboto Condensed", sans-serif;
-        margin-bottom: 3rem;
-      }
-
-      .movie_info_list {
-        font-size: 1.2rem;
-        position: absolute;
-        top: 60%;
-        @include flex(flex-start);
-
-        mat-icon {
-          color: yellow;
-          font-size: 1rem;
-          @include flex();
-        }
-      }
-
-      .btn_list {
-        @include flex(flex-start);
-
-        .btn {
-          background-color: rgb(31, 88, 255);
-          border: none;
-          height: 4rem;
-          width: 10rem;
-          border-radius: 10px;
-          margin-right: 2.5rem;
-          padding-top: 0.1rem;
-          @include flex();
-        }
-
-        .btn:nth-child(1) {
-          padding-right: 0.5rem;
-          background-color: rgba(55, 62, 73, 0.5);
-        }
-
-        .btn:nth-child(2) {
-          color: white;
-        }
-      }
-    }
-  }
+.movie_name {
+  color: white;
+  font-size: 3rem;
+  font-weight: 900;
+  font-family: "Roboto Condensed", sans-serif;
+  margin-bottom: 3rem;
 }

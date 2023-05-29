@@ -16,7 +16,7 @@ export class MoviePosterResolveService {
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any>{
     return this.movieService.getMovieInfo(+route.params['id'], 'images').pipe(
       map((movieImages) => {
-        return movieImages.backdrops?.slice(0, 10);
+        return movieImages.backdrops?.slice(0, 5);
       })
     );
   }

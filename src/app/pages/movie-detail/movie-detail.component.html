@@ -9,15 +9,15 @@
             </div>
             <p class="movie_info_list">
                 <mat-icon>star</mat-icon>
-                <span style="font-size: 1.6rem" class="fc">
+                <span style="font-size: 1.6rem">
                     {{ movie?.vote_average | number: '1.1-1' }}
                 </span>
-                <span class="fc">| {{ movie?.popularity?.toFixed(0) }}</span>
-                <span style="margin-left: 2rem" class="fc">
+                <span>| {{ movie?.popularity?.toFixed(0) }}</span>
+                <span style="margin-left: 2rem">
                     {{ movie?.runtime }} mins · {{ type }} · {{ movie?.release_date | date: 'yyyy' }}
                 </span>
             </p>
-            <p class="description fc">{{ movie?.overview }}</p>
+            <p class="description">{{ movie?.overview }}</p>
             <p class="homepage" *ngIf="movie?.homepage">
                 <a mat-raised-button>
                     Home Page
@@ -25,10 +25,12 @@
             </p>
 
             <div class="btn_list">
-                <button class="btn play">
-                    <mat-icon>play_arrow</mat-icon><span>PLAY NOW</span>
+                <button class="btn_play">
+                    <div class="btn_play_wrap">
+                        <mat-icon>play_arrow</mat-icon><span>PLAY NOW</span>
+                    </div>
                 </button>
-                <button class="btn" (click)="openDialog()">
+                <button class="btn_trailer" (click)="openDialog()">
                     <strong>TRAILER</strong>
                 </button>
             </div>

@@ -65,13 +65,13 @@ export class MovieService implements OnInit{
     );
   }
 
-  getMovieInfo(id: number, item: string =''): Observable<any> {
+  getMovieInfo(id: number, params: string =''): Observable<any> {
     //for movie detail
     let url = ''
-    if (!item) {
+    if (!params) {
       url = [this.tmdbBaseUrl, this.moviePath, id].join('/') + '?api_key=' + this.apiKey;
     } else {
-      url = [this.tmdbBaseUrl, this.moviePath, id, item].join('/') + '?api_key=' + this.apiKey;
+      url = [this.tmdbBaseUrl, this.moviePath, id, params].join('/') + '?api_key=' + this.apiKey;
     }
     // console.log("gettting the movie Info!", item, url);
     return this.http.get(url);

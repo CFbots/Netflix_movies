@@ -8,7 +8,7 @@ import { AppUserAuth } from 'src/app/interface/user.interface';
   providedIn: 'root'
 })
 export class AuthGuard implements CanLoad, CanActivate {
-    currentToken: string | null = localStorage.getItem('access_token');
+    currentToken!: string | null;
 
     constructor(
         private readonly authService: AuthService,
@@ -18,6 +18,7 @@ export class AuthGuard implements CanLoad, CanActivate {
     canActivate(
         route: ActivatedRouteSnapshot,
         state: RouterStateSnapshot): boolean {
+        this.currentToken = localStorage.getItem('access_token');
         if (this.currentToken) {
             return true;
         } else {
@@ -28,6 +29,7 @@ export class AuthGuard implements CanLoad, CanActivate {
     }
     
     canLoad(route: Route, segments: UrlSegment[]): boolean {
+        this.currentToken = localStorage.getItem('access_token');
         if (this.currentToken) {
             return true;
         } else {
